@@ -88,10 +88,17 @@ li a:hover {
 .navbar{
     display: flex;
     justify-content: space-between;
+    background-image: url('/static/img/background.png');
+    background-size: 100%;
 }
 
 .cart{
     width: 30px;
     height: 30px;
+    margin-right: 75px;
+}
 
+body{
+    background-image: url('/static/img/background.png');
+    background-size: 100%;
 }
