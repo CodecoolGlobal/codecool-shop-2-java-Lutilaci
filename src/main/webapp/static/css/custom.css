@@ -12,6 +12,22 @@
 .thumbnail img
 {
     margin-top: 10px;
+    height: 150px;
+}
+.product-height {
+    height: 150px;
+}
+.col{
+    padding: 15px;
+}
+.dropdown{
+    width: 100%;
+}
+.dropdown-menu{
+    width: 100%;
+}
+.card-header{
+    height: 150px;
 }
 .item.list-group-item
 {
