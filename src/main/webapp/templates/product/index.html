@@ -7,6 +7,7 @@
 
     <title>Codecool Shop</title>
 
+    <script type="text/javascript" src="/static/js/main.js" defer></script>
     <!-- Bootstrap components -->
     <!-- Latest compiled and minified Jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -59,14 +60,14 @@
         <img src='/static/img/thriftshop.png' width="auto" height="60">
     </div>
     <div class="cart">
-        <button type="button" class="btn btn-light">
+        <button type="button" class="btn btn-light" id="shoppingCart">
             <img src='/static/img/cart0.png' width="40" height="40">
         </button>
     </div>
 </div>
-<!--<div class="navbar">-->
 
-<!--</div>-->
+<div th:replace="module.html :: copy"></div>
+
 <div class="container">
     <div class="card">
         <strong th:text="${category.name}">Category Title</strong>
@@ -86,7 +87,8 @@
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
+                        <input type="image" src="/static/img/addToCart.png" name="addToCart" class="btTxt submit"
+                               alt="addToCart" style="height:20px">
                     </div>
                 </div>
             </div>
