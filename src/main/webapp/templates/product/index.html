@@ -29,6 +29,10 @@
     <!-- End of Bootstrap components -->
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Slackey&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -36,24 +40,16 @@
 <div class="text-center navbar">
     <div id="buttons" style="margin-bottom: 50px; margin-top: 50px">
         <button type="button" class="btn btn-light" id="home" style="margin-left: 75px;">
-            <a href=\"/\">
-                <img src='/static/img/home.png' width="auto" height="20">
-            </a>
+            Home
         </button>
         <button type="button" class="btn btn-light" id="product">
-            <a href=#>
-                <img src='/static/img/products.png' width="auto" height="20">
-            </a>
+            Products
         </button>
         <button type="button" class="btn btn-light" id="registration">
-            <a href=#>
-                <img src='/static/img/registration.png' width="auto" height="20">
-            </a>
+            Registration
         </button>
         <button type="button" class="btn btn-light" id="login">
-            <a href=#>
-                <img src='/static/img/login.png' width="auto" height="20">
-            </a>
+            Login
         </button>
     </div>
     <div class="logo">
@@ -80,15 +76,18 @@
                      th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
                 <div class="card-header">
                     <h4 class="card-title" th:text="${prod.name}">Product name</h4>
-                    <p class="card-text" th:text="${prod.description}">Product description... </p>
+                    <p class="card-text prod-desc" th:text="${prod.description}">Product description... </p>
                 </div>
                 <div class="card-body">
                     <div class="card-text">
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
-                        <input type="image" src="/static/img/addToCart.png" name="addToCart" class="btTxt submit"
-                               alt="addToCart" style="height:20px">
+                        <button type="button" class="btn btn-light" id="addToCArt">
+                            Add to cart
+                        </button>
+<!--                        <input type="image" src="/static/img/addToCart.png" name="addToCart" class="btTxt submit"-->
+<!--                               alt="addToCart" style="height:20px">-->
                     </div>
                 </div>
             </div>

@@ -61,30 +61,6 @@
     margin: 0 0 11px;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: #111;
-}
-
 .navbar{
     display: flex;
     justify-content: space-between;
@@ -101,7 +77,7 @@ li a:hover {
 body{
     background-image: url('/static/img/background.png');
     background-size: 100%;
-    font-family: Slackye, sans-serif;
+    font-family: 'Slackey', cursive;
 
 }
 
@@ -121,8 +97,12 @@ body{
     margin-left: 30px;
 }
 
-.card-text {
-    font-family: Slackye, sans-serif;
+.card-text{
+    font-family: 'Slackey', cursive;
+}
+
+.prod-desc{
+    font-family: 'Architects Daughter', cursive;
 }
 
 /* The Modal (background) */
@@ -171,27 +151,14 @@ body{
     border: none;
     outline: none;
 }
-.delete-btn,
-.like-btn {
+
+.delete-btn {
     display: inline-block;
     Cursor: pointer;
-}
-.delete-btn {
     width: 18px;
     height: 17px;
     background-image: url('/static/img/bin.png');
 }
-
-/*.like-btn {*/
-/*    position: absolute;*/
-/*    top: 9px;*/
-/*    left: 15px;*/
-/*    background: url('twitter-heart.png');*/
-/*    width: 60px;*/
-/*    height: 60px;*/
-/*    background-size: 2900%;*/
-/*    background-repeat: no-repeat;*/
-/*}*/
 
 .image {
     margin-right: 50px;
@@ -234,14 +201,6 @@ body{
     font-weight: 300;
 }
 
-/*button[class*=btn] {*/
-/*    width: 30px;*/
-/*    height: 30px;*/
-/*    background-color: #E1E8EE;*/
-/*    border-radius: 6px;*/
-/*    border: none;*/
-/*    cursor: pointer;*/
-/*}*/
 .minus-btn img {
     margin-bottom: 3px;
 }
@@ -261,4 +220,35 @@ input:focus {
     font-size: 16px;
     color: #43484D;
     font-weight: 300;
+}
+
+.shopping-cart {
+    width: 750px;
+    height: 423px;
+    margin: 80px auto;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    height: 60px;
+    border-bottom: 1px solid #E1E8EE;
+    padding: 20px 30px;
+    color: #5E6977;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.item {
+    padding: 20px 30px;
+    height: auto;
+    display: flex;
+}
+
+.item:nth-child(3) {
+    border-top:  1px solid #E1E8EE;
+    border-bottom:  1px solid #E1E8EE;
 }
