@@ -33,7 +33,21 @@
 <div class="jumbotron text-center">
     <h1>Codecool Shop</h1>
 </div>
-
+<div class="container">
+    <div class="row search">
+        <div class="col col-sm-2">
+            <div th:replace="index/product-scrollbar.html :: copy"></div>
+        </div>
+        <div class="col col-sm-2">
+            <div th:replace="index/supplier-scrollbar.html :: copy"></div>
+        </div>
+        <div class="col col-sm-8">
+            <div class="card">
+                <p>Search bar</p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="card">
         <strong th:text="${category.name}">Category Title</strong>
