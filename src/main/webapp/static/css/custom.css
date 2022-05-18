@@ -12,6 +12,22 @@
 .thumbnail img
 {
     margin-top: 10px;
+    height: 150px;
+}
+.product-height {
+    height: 150px;
+}
+.col{
+    padding: 15px;
+}
+.dropdown{
+    width: 100%;
+}
+.dropdown-menu{
+    width: 100%;
+}
+.card-header{
+    height: 150px;
 }
 .item.list-group-item
 {
@@ -59,4 +75,205 @@
 .list-group-item-text
 {
     margin: 0 0 11px;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    background-image: url('/static/img/background.png');
+    background-size: 100%;
+}
+
+.cart{
+    width: 30px;
+    height: 30px;
+    margin-right: 75px;
+}
+
+body{
+    background-image: url('/static/img/background.png');
+    background-size: 100%;
+    font-family: 'Slackey', cursive;
+
+}
+
+.submit{
+    background-color: deepskyblue;
+}
+
+.footer {
+    position: fixed;
+    padding-left: 20px;
+    padding-right: 20px;
+    bottom: 0;
+    width: 100%;
+    /* Height of the footer*/
+
+}
+
+.card-text{
+    font-family: 'Slackey', cursive;
+}
+
+.prod-desc{
+    font-family: 'Architects Daughter', cursive;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    /*background-color: #fefefe;*/
+    background-image: url('/static/img/moduloBackground.png');
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.buttons {
+    position: relative;
+    padding-top: 30px;
+    margin-right: 60px;
+    border: none;
+    outline: none;
+}
+
+.delete-btn {
+    display: inline-block;
+    Cursor: pointer;
+    width: 18px;
+    height: 17px;
+    background-image: url('/static/img/bin.png');
+}
+
+.image {
+    margin-right: 50px;
+}
+
+/*Let’s add some basic style to  product name and description.*/
+.description {
+    padding-top: 10px;
+    margin-right: 60px;
+    width: 115px;
+}
+
+.description span {
+    display: block;
+    font-size: 14px;
+    color: #43484D;
+    font-weight: 400;
+}
+
+.description span:first-child {
+    margin-bottom: 5px;
+}
+.description span:last-child {
+    font-weight: 300;
+    margin-top: 8px;
+    color: #86939E;
+}
+
+.quantity {
+    padding-top: 20px;
+    margin-right: 60px;
+}
+.quantity input {
+    -webkit-appearance: none;
+    border: none;
+    text-align: center;
+    width: 32px;
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+}
+
+.minus-btn img {
+    margin-bottom: 3px;
+}
+.plus-btn img {
+    margin-top: 2px;
+}
+
+button:focus,
+input:focus {
+    outline:0;
+}
+
+.total-price {
+    width: 83px;
+    padding-top: 27px;
+    text-align: center;
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+}
+
+#lblCartCount {
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+}
+
+.shopping-cart {
+    width: 750px;
+    height: 423px;
+    margin: 80px auto;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+}
+#shoppingCart{
+    background-color: transparent;
+    border: none;
+}
+
+.title {
+    height: 60px;
+    border-bottom: 1px solid #E1E8EE;
+    padding: 20px 30px;
+    color: #5E6977;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.item {
+    padding: 20px 30px;
+    height: auto;
+    display: flex;
+}
+
+.item:nth-child(3) {
+    border-top:  1px solid #E1E8EE;
+    border-bottom:  1px solid #E1E8EE;
 }

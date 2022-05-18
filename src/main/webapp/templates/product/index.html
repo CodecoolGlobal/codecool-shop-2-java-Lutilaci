@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <meta name="author" content="Codecool" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8"/>
+    <meta name="author" content="Codecool"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
     <title>Codecool Shop</title>
 
+    <script type="text/javascript" src="/static/js/main.js" defer></script>
     <!-- Bootstrap components -->
     <!-- Latest compiled and minified Jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -14,24 +15,70 @@
 
     <!--Latest compiled and minified Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- End of Bootstrap components -->
 
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Slackey&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
+<div class="text-center navbar">
+    <div id="buttons" style="margin-bottom: 50px; margin-top: 50px">
+        <button type="button" class="btn btn-light" id="home" style="margin-left: 75px;">
+            Home
+        </button>
+        <button type="button" class="btn btn-light" id="product">
+            Products
+        </button>
+        <button type="button" class="btn btn-light" id="registration">
+            Registration
+        </button>
+        <button type="button" class="btn btn-light" id="login">
+            Login
+        </button>
+    </div>
+    <div class="logo">
+        <img src='/static/img/thriftshop.png' width="auto" height="60">
+    </div>
+    <div class="cart">
+        <button type="button" class="btn btn-light" id="shoppingCart">
+            <img src='/static/img/cart0.png' width="45" height="45" style="font-size: 25px">
+            <asp:Label ID="lblCartCount" runat="server" CssClass="badge badge-warning"  ForeColor="White"/>
+        </button>
+    </div>
+</div>
+
+<div th:replace="module.html :: copy"></div>
+
+<div class="container">
+    <div class="row search">
+        <div class="col col-sm-2">
+            <div th:replace="index/product-scrollbar.html :: copy"></div>
+        </div>
+        <div class="col col-sm-2">
+            <div th:replace="index/supplier-scrollbar.html :: copy"></div>
+        </div>
+        <div class="col col-sm-8">
+            <div class="card">
+                <p>Search bar</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -42,17 +89,22 @@
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="card">
-                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
+                <img class="product-height" src="http://placehold.it/400x250/000/fff"
+                     th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
                 <div class="card-header">
                     <h4 class="card-title" th:text="${prod.name}">Product name</h4>
-                    <p class="card-text" th:text="${prod.description}">Product description... </p>
+                    <p class="card-text prod-desc" th:text="${prod.description}">Product description... </p>
                 </div>
                 <div class="card-body">
                     <div class="card-text">
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
+                        <button type="button" class="btn btn-light" th:data-id="${prod.id}" id="addToCart">
+                            Add to cart
+                        </button>
+<!--                        <input type="image" src="/static/img/addToCart.png" name="addToCart" class="btTxt submit"-->
+<!--                               alt="addToCart" style="height:20px">-->
                     </div>
                 </div>
             </div>
