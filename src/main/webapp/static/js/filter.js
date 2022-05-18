@@ -14,12 +14,11 @@ function changeButton(name){
     productDropDownButton.innerText = name;
 }
 
-async function eventHandler(event){
-    const productId =event.target.dataset.prodid;
-    let url = "";
-    let param = "";
+async function eventHandler(productId){
+    let url = "product";
+    let param = "prodid";
     let response = await apiGet(url, param, productId);
-    const rowClass = document.querySelector(".row");
+    const rowClass = document.getElementById("products");
     rowClass.innerHTML = rowBuilder(response);
 }
 
