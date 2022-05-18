@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="copy">
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content modal-dialog">
+            <div class="modal-header">
+                <img src='/static/img/shoppingCart.png' height="40" width="auto">
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div th:each="prod,iterStat : ${products}">
+                    <!-- Product -->
+                    <div class="card">
+                        <div class="item">
+                            <div class="buttons">
+                                <span class="delete-btn"></span>
+                            </div>
+                            <div class="image">
+                                <img class="product-height" src="http://placehold.it/400x250/000/fff"
+                                     th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" width="100"
+                                     height="auto"/>
+                            </div>
+
+                            <div class="description">
+                                <h4 class="card-title" th:text="${prod.name}">Product name</h4>
+                                <p class="card-text prod-desc" th:text="${prod.description}">Product description... </p>
+                            </div>
+                            <div class="card-text">
+                                <p class="lead item-price" th:data-price="${prod.getPrice()}"
+                                   th:text="${prod.getPrice()}">100 USD</p>
+                            </div>
+
+                            <div class="quantity">
+                                <button class="minus-btn" type="button" name="button">
+                                    -
+                                </button>
+                                <input type="text" name="name" class="changeQuantity" value="1">
+                                <button class="plus-btn" type="button" name="button">
+                                    +
+                                </button>
+                            </div>
+                            <div class="total-price" th:text="${prod.getPrice()}">549</div>
+                        </div>
+                    </div>
+                    <br>
+
+                </div>
+                <div class="modal-footer">
+                    <div id="total-total-price">$549</div>
+                    <button type="button" class="btn btn-light" id="checkOut">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
