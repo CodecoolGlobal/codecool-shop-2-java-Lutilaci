@@ -7,10 +7,10 @@
             Product name
         </button>
         <div class="dropdown-menu" aria-labelledby="productDropDownMenu">
-            <a href="" class="dropdown-item">Tablet</a>
-            <a href="" class="dropdown-item">Smart Phone</a>
-            <a href="" class="dropdown-item">Personal Computer</a>
-            <a href="" class="dropdown-item">Laptop</a>
+            <a class="dropdown-item product" th:each="prod : ${products}" th:text="${prod.name}" th:data-prodid="${prod.id}">  </a>
+<!--            <a href="" class="dropdown-item">Smart Phone</a>-->
+<!--            <a href="" class="dropdown-item">Personal Computer</a>-->
+<!--            <a href="" class="dropdown-item">Laptop</a>-->
         </div>
     </div>
 </body>

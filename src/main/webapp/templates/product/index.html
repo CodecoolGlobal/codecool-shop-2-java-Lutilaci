@@ -7,6 +7,8 @@
 
     <title>Codecool Shop</title>
 
+    <script src="static/js/filter.js" defer></script>
+
     <script type="text/javascript" src="/static/js/main.js" defer></script>
     <!-- Bootstrap components -->
     <!-- Latest compiled and minified Jquery -->
@@ -82,13 +84,10 @@
 </div>
 
 <div class="container">
-    <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
-    </div>
 
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
-            <div class="card">
+            <div class="card" th:data-category="${prod.getProductCategory().getDepartment()}" th:data-name="${prod.name}">
                 <img class="product-height" src="http://placehold.it/400x250/000/fff"
                      th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
                 <div class="card-header">
