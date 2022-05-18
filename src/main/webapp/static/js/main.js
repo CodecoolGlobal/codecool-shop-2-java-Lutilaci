@@ -19,9 +19,14 @@ function modalWindowHandler() {
 
 function eventListenerAdder(){
     const addCard = document.querySelectorAll("#addToCart");
+    let cartItemNumber = document.querySelector(".cart-item-number");
+    cartItemNumber.innerText = "0";
+    let cartNumber = 0;
     for(let i = 0; i < addCard.length; i++){
         addCard[i].addEventListener("click", event => {
             alert("Added to cart")
+            cartNumber++;
+            cartItemNumber.innerText = cartNumber.toString();
             addProductToSessionStorage(addCard[i].dataset.id)
             let data = sessionStorage.getItem(addCard[i].dataset.id);
             console.log(data)

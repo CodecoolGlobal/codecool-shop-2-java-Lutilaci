@@ -56,10 +56,13 @@
         <img src='/static/img/thriftshop.png' width="auto" height="60">
     </div>
     <div class="cart">
-        <button type="button" class="btn btn-light" id="shoppingCart">
-            <img src='/static/img/cart0.png' width="45" height="45" style="font-size: 25px">
-            <asp:Label ID="lblCartCount" runat="server" CssClass="badge badge-warning"  ForeColor="White"/>
-        </button>
+        <form class="d-flex">
+            <button class="btn btn-outline-dark" type="submit" id="shoppingCart">
+                <span class="badge bg-dark text-white ms-1 rounded-pill cart-item-number">0</span>
+                <img src="/static/img/cart00.png" width="50" height="auto">
+                <i class="bi-cart-fill me-1"></i>
+            </button>
+        </form>
     </div>
 </div>
 
