@@ -41,13 +41,13 @@ public class Initializer implements ServletContextListener {
         //setting up products and printing it
         productDataStore.add(new Product("Sunglass", new BigDecimal("12"), "USD", "For sunny days.", fun, amazon));
         productDataStore.add(new Product("Candle Bulb", new BigDecimal("5"), "USD", "For candle-lit date nights.", home, lenovo));
-        productDataStore.add(new Product("Bottle Water", new BigDecimal("3"), "USD", "Thirst trap.", kitchen, amazon));
+        productDataStore.add(new Product("Bottle Water", new BigDecimal("3"), "USD", "Definitely a thirst trap.", kitchen, amazon));
         productDataStore.add(new Product("Self-watering can", new BigDecimal("20"), "USD", "Never run out of water.", home, amazon));
-        productDataStore.add(new Product("Aquarium Hourglass", new BigDecimal("15"), "USD", "Don't worry about time. Worry about feeding your new pet.", fun, amazon));
+        productDataStore.add(new Product("Aquarium Hourglass", new BigDecimal("15"), "USD", "Don't worry about time, but feeding your new pet.", fun, amazon));
         productDataStore.add(new Product("Table Tennis equipment", new BigDecimal("8"), "USD", "There's a loophole.", fun, amazon));
-        productDataStore.add(new Product("Couple's mugs", new BigDecimal("30"), "USD", "For you and your clingy partner", kitchen, amazon));
+        productDataStore.add(new Product("Couple's mugs", new BigDecimal("30"), "USD", "For you and your clingy partner.", kitchen, amazon));
         productDataStore.add(new Product("Double Champagne Glass", new BigDecimal("50"), "USD", "Double the fun on New Year's Eve.", kitchen, amazon));
-        productDataStore.add(new Product("Pocket Ruler", new BigDecimal("6"), "USD", "To measure every tiny detail", home, amazon));
+        productDataStore.add(new Product("Pocket Ruler", new BigDecimal("6"), "USD", "To measure every tiny detail.", home, amazon));
         productDataStore.add(new Product("Balloon Paint Roller", new BigDecimal("45"), "USD", "Mix a birthday party with home renovation.", home, amazon));
         productDataStore.add(new Product("Spherical dice", new BigDecimal("25"), "USD", "Test your luck.", fun, amazon));
         productDataStore.add(new Product("Spork", new BigDecimal("12"), "USD", "If you can't decide.", kitchen, amazon));
