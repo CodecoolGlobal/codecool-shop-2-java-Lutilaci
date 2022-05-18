@@ -7,6 +7,14 @@
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>/static/*</url-pattern>
-	</servlet-mapping>
 
+	</servlet-mapping>
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>test2222</servlet-name>-->
+<!--		<url-pattern>/api/get/product-attributes</url-pattern>-->
+<!--	</servlet-mapping>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>test</servlet-name>-->
+<!--		<url-pattern>/api/get/product-list</url-pattern>-->
+<!--	</servlet-mapping>-->
 </web-app>
