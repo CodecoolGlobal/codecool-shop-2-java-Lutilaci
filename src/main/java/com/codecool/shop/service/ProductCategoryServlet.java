@@ -24,15 +24,15 @@ public class ProductCategoryServlet extends HttpServlet {
         ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
         
         int catId = Integer.parseInt(request.getParameter("catId"));
-        List<Product> playground = productService.getProductsForCategory(catId);
+        List<Product> productList = productService.getProductsForCategory(catId);
 
         //Create new Gson to create Json response.
         Gson gson = new Gson();
         String json = "";
 
-        if(playground.size() > 0){
-            for(int i = 0; i < playground.size(); i++){
-                json += gson.toJson(playground.get(i));
+        if(productList.size() > 0){
+            for(int i = 0; i < productList.size(); i++){
+                json += gson.toJson(productList.get(i));
             }
         } else {
             json = gson.toJson(null);
