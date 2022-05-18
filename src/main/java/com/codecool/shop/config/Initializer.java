@@ -31,16 +31,16 @@ public class Initializer implements ServletContextListener {
         supplierDataStore.add(lenovo);
 
         //setting up a new product category
-        ProductCategory fun = new ProductCategory("fun", "Fun", "Unnecessary fun items for boring days.");
+        ProductCategory fun = new ProductCategory("Fun items", "fun", "Unnecessary fun items for boring days.");
         productCategoryDataStore.add(fun);
-        ProductCategory home = new ProductCategory("home", "home", "These utilities might come in handy one day.");
+        ProductCategory home = new ProductCategory("Home accessories", "home", "These utilities might come in handy one day.");
         productCategoryDataStore.add(home);
-        ProductCategory kitchen = new ProductCategory("kitchen", "kitchen", "Everyone needs some kitchen supplies.");
+        ProductCategory kitchen = new ProductCategory("Kitchen supplies", "kitchen", "Everyone needs some kitchen supplies.");
         productCategoryDataStore.add(kitchen);
 
         //setting up products and printing it
-        productDataStore.add(new Product("Amazon Fire", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", fun, amazon));
-        productDataStore.add(new Product("Lenovo IdeaPad Miix 700", new BigDecimal("479"), "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", home, lenovo));
-        productDataStore.add(new Product("Amazon Fire HD 8", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", kitchen, amazon));
+        productDataStore.add(new Product("Sunglass", new BigDecimal("49.9"), "USD", "For sunny days.", fun, amazon));
+        productDataStore.add(new Product("Candle Bulb", new BigDecimal("47.9"), "USD", "For night.", home, lenovo));
+        productDataStore.add(new Product("Bottle Water", new BigDecimal("89"), "USD", "Thirst trap.", kitchen, amazon));
     }
 }
