@@ -15,10 +15,29 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name="prodCatServlet", urlPatterns = {"/sg/something"}, loadOnStartup = 2)
-public class ProductCategoryServlet extends BasicServlet {
+@WebServlet(name = "productsPerCategory",urlPatterns = {"/api/get/product-list"})
+public class ProductCategoryServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
+        
+        int catId = Integer.parseInt(request.getParameter("catId"));
+        List<Product> playground = productService.getProductsForCategory(catId);
 
-    public ProductCategoryServlet() {
-        this.setServletURL("something from url");
+        //Create new Gson to create Json response.
+        Gson gson = new Gson();
+        String json = "";
+
+        if(playground.size() > 0){
+            for(int i = 0; i < playground.size(); i++){
+                json += gson.toJson(playground.get(i));
+            }
+        } else {
+            json = gson.toJson(null);
+        }
+        //Return Json response's first iteration
+        response.getOutputStream().print(json);
     }
 }
