@@ -1,8 +1,6 @@
 export function rowBuilder(result){
     let rowHTML = "";
-    result.forEach(json => {
-        rowHTML += cardBuilder(json.defaultPrice, json.catId, json.name, json.id, json.description, json.defaultCurrency)
-    })
+    rowHTML += cardBuilder(result.defaultPrice, result.catId, result.name, result.id, result.description, result.defaultCurrency)
     return rowHTML
 }
 
