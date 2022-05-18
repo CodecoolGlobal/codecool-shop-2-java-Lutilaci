@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "productsPerCategory",urlPatterns = {"/api/get/product-list"})
+@WebServlet(name = "productsByCategory",urlPatterns = {"/api/get/products-by-category"})
 public class ProductCategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
