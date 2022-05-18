@@ -93,7 +93,7 @@
                 <img class="product-height" src="http://placehold.it/400x250/000/fff"
                      th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
                 <div class="card-header">
-                    <h4 class="card-title" th:data-productName="${prod.name}" th:text="${prod.name}">Product name</h4>
+                    <h4 class="card-title" th:text="${prod.name}">Product name</h4>
                     <p class="card-text prod-desc" th:data-description="${prod.description}" th:text="${prod.description}">Product description... </p>
                 </div>
                 <div class="card-body">
@@ -101,7 +101,7 @@
                         <p class="lead" th:data-price="${prod.getPrice()}" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
-                        <button type="button" class="btn btn-light" th:data-id="${prod.id}" id="addToCart">
+                        <button type="button" class="btn btn-light" th:data-price="${prod.getPrice()}" th:data-description="${prod.description}" th:data-prodName="${prod.name}" th:data-id="${prod.id}" id="addToCart">
                             Add to cart
                         </button>
 <!--                        <input type="image" src="/static/img/addToCart.png" name="addToCart" class="btTxt submit"-->
