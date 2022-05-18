@@ -1,25 +1,60 @@
-// Get the modal
-let modal = document.getElementById("myModal");
+function modalWindowHandler() {
+    let modal = document.getElementById("myModal");
+    let btn = document.getElementById("shoppingCart");
+    let span = document.getElementsByClassName("close")[0];
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
 
-// Get the button that opens the modal
-let btn = document.getElementById("shoppingCart");
-
-// Get the <span> element that closes the modal
-let span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
+    span.onclick = function () {
         modal.style.display = "none";
     }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 }
+
+function eventListenerAdder(){
+    const addCard = document.querySelectorAll("#addToCart");
+    for(let i = 0; i < addCard.length; i++){
+        addCard[i].addEventListener("click", event => {
+            alert("Added to cart")
+            addProductToSessionStorage(addCard[i].dataset.id)
+            let data = sessionStorage.getItem(addCard[i].dataset.id);
+            console.log(data)
+        })
+    }
+
+    // sessionStorageHandler(addCard)
+}
+
+// function
+function addProductToSessionStorage(productId){
+    let data = sessionStorage.getItem(productId)
+    if(data != null){
+        sessionStorage.setItem(productId, (parseInt(data)+1).toString());
+    } else {
+        sessionStorage.setItem(productId, "1");
+    }
+}
+function sessionStorageHandler(){
+    // Save data to sessionStorage
+    sessionStorage.setItem('key', 'value');
+
+// Get saved data from sessionStorage
+    let data = sessionStorage.getItem('key');
+
+    console.log(data)
+// Remove saved data from sessionStorage
+
+    sessionStorage.removeItem('key');
+// Remove all saved data from sessionStorage
+
+    sessionStorage.clear();
+}
+eventListenerAdder()
+modalWindowHandler()
+sessionStorageHandler()
