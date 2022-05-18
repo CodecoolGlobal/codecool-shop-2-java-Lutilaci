@@ -1,5 +1,5 @@
-import {rowBuilder} from "./cardFactory";
-import {apiGet} from "./api";
+import {rowBuilder} from "./cardFactory.js";
+import {apiGet} from "./api.js";
 
 function productFiltering(){
     const products = document.querySelectorAll(".product");
