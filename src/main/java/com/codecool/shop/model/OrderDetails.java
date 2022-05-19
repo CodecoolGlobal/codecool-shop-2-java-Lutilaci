@@ -5,14 +5,14 @@ import java.util.List;
 public class OrderDetails {
 
     // Data from shipping
-    String firstName;
-    String lastName;
-    String email;
-    String street;
-    String city;
-    String zipCode;
+    public String firstName;
+    public String lastName;
+    public String email;
+    public String street;
+    public String city;
+    public String zipCode;
 
-    List<Product> productList;
+    public List<Product> productList;
 
     public OrderDetails(String firstName, String lastName, String email, String street, String city, String zipCode){
         this.firstName = firstName;
