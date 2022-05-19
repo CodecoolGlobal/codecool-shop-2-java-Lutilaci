@@ -14,9 +14,10 @@ public class ProductService{
     private ProductCategoryDao productCategoryDao;
     private SupplierDao supplierDao;
 
-    public ProductService(ProductDao productDao, ProductCategoryDao productCategoryDao) {
+    public ProductService(ProductDao productDao, ProductCategoryDao productCategoryDao, SupplierDao supplierDao) {
         this.productDao = productDao;
         this.productCategoryDao = productCategoryDao;
+        this.supplierDao = supplierDao;
     }
 
     public ProductCategory getProductCategory(int categoryId){
