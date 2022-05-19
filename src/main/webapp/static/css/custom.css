@@ -29,6 +29,14 @@
 .card-header{
     height: 150px;
 }
+.highlight{
+    background-color: #428bca;
+    color: white !important;
+}
+.highlight:hover{
+    background-color: #428bca !important;
+    color: white !important;
+}
 .item.list-group-item
 {
     float: none;
