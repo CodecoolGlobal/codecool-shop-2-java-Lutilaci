@@ -3,8 +3,10 @@ package com.codecool.shop.service;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.Product;
 import com.google.gson.Gson;
 
@@ -21,7 +23,9 @@ public class ProductCategoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
+        SupplierDao supplierDao = SupplierDaoMem.getInstance();
+
+        ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDao);
         
         int catId = Integer.parseInt(request.getParameter("catId"));
         List<Product> productList = productService.getProductsForCategory(catId);
