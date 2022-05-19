@@ -11,13 +11,6 @@ public class PaymentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
 
-        String name = req.getParameter("name");
-        String name = req.getParameter("name");
-        String name = req.getParameter("name");
-        String name = req.getParameter("name");
-        String name = req.getParameter("name");
-        String name = req.getParameter("name");
-
         // TODO: create new object and set its fields from request!
     }
 }
