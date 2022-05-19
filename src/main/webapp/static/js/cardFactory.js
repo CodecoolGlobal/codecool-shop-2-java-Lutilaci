@@ -1,5 +1,8 @@
 export function rowBuilder(result){
     let rowHTML = "";
+    if(result.length === 0){
+        return rowHTML
+    }
     if(result.length > 0){
         result.forEach(res => {
             rowHTML += cardBuilder(res.defaultPrice, res.catId, res.name, res.id, res.description, res.defaultCurrency)
