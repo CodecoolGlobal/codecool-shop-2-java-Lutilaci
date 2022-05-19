@@ -1,5 +1,5 @@
-export async function apiGet(url, param, value){
-    let response = await fetch(`/api/get/${url}?${param}=${value}`, {
+export async function apiGet(url){
+    let response = await fetch(url, {
         method:'GET'
     })
     if(response.status===200){

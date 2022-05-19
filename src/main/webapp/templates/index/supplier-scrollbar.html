@@ -7,8 +7,7 @@
             Suppliers
         </button>
         <div class="dropdown-menu" aria-labelledby="supplierDropDownMenu">
-            <a class="dropdown-item supplier">Tiger</a>
-            <a class="dropdown-item supplier">Weird Shop</a>
+            <a class="dropdown-item category" th:each="cat : ${category}" th:text="${cat.name}" th:data-catid="${cat.id}"></a>
         </div>
     </div>
 </body>

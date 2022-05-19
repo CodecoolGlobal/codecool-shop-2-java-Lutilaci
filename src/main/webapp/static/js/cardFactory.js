@@ -1,6 +1,12 @@
 export function rowBuilder(result){
     let rowHTML = "";
-    rowHTML += cardBuilder(result.defaultPrice, result.catId, result.name, result.id, result.description, result.defaultCurrency)
+    if(result.length > 0){
+        result.forEach(res => {
+            rowHTML += cardBuilder(res.defaultPrice, res.catId, res.name, res.id, res.description, res.defaultCurrency)
+        })
+    } else {
+        rowHTML += cardBuilder(result.defaultPrice, result.catId, result.name, result.id, result.description, result.defaultCurrency)
+    }
     return rowHTML
 }
 
