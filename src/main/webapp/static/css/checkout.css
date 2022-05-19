@@ -1,6 +1,6 @@
 html{
     height: 100%;
-    background-image: url('../img/background.png') !important;
+    /*background-image: url('../img/background.png') !important;*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

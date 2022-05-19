@@ -339,3 +339,8 @@ input{
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
 }
+
+.exp{
+    width: 30%;
+    margin: 5px;
+}
