@@ -1,5 +1,6 @@
 import {rowBuilder} from "./cardFactory.js";
 import {apiGet} from "./api.js";
+import {eventListenerAdder} from "./main.js";
 
 let supp_id = 0
 let cat_id = 0
@@ -30,6 +31,7 @@ function supplierFiltering(){
                 }
             }
             await eventHandler(url)
+            eventListenerAdder()
         })
     })
 }
@@ -62,9 +64,10 @@ function categoryFiltering(){
                 }
             }
             await eventHandler(url);
+            eventListenerAdder()
+
         })
     })
-
 }
 
 async function eventHandler(url){

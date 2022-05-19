@@ -24,7 +24,7 @@ function modalWindowHandler() {
     }
 }
 
-function eventListenerAdder(){
+export function eventListenerAdder(){
     let addCard = document.querySelectorAll("#addToCart");
     let cartItemNumber = document.querySelector(".cart-item-number");
     cartItemNumber.innerText = "0";
@@ -36,13 +36,14 @@ function eventListenerAdder(){
     let counter = 0;
     for(let i = 0; i < addCard.length; i++) {
         addCard[i].addEventListener("click", () => {
-            let price = addCard[i].dataset.price.split(" ");
+            console.log("clicked")
+            let price = addCard[i].dataset.price;
             let item = {
                 "id": addCard[i].dataset.id,
                 "productName": addCard[i].dataset.prodname,
                 "quantity": 0,
                 "description": addCard[i].dataset.description,
-                "price": price[0],
+                "price": price.toString(),
                 "picture": document.querySelector(".product-height").src
             }
             if (list.includes(addCard[i].dataset.id)) {
@@ -129,14 +130,14 @@ function addToCart(shoppingCartContent) {
         let count = 0
         let productName = "";
         let description = ""
-        let price = ""
+        let price;
 
         for(let i = 0; i < shoppingCartContent.length; i++){
             if(shoppingCartContent[i].id == id){
                 count++
                 productName = shoppingCartContent[i].productName
                 description = shoppingCartContent[i].description
-                price = shoppingCartContent[i].price
+                price = shoppingCartContent[i].price.toString();
 
             }
         }
@@ -153,7 +154,7 @@ function addToCart(shoppingCartContent) {
             "                                <p class=\"card-text prod-desc\">" + description + "</p>\n" +
             "                            </div>\n" +
             "                            <div class=\"card-text\">\n" +
-            `                                <p class=\"lead item-price\"> ${price}  USD </p>\n` +
+            `                                <p class=\"lead item-price\"> ${price}  </p>\n` +
             "                            </div>\n" +
             "                            <div class=\"quantity\">\n" +
             "                                <button class=\"minus-btn\" type=\"button\" name=\"button\">\n" +
