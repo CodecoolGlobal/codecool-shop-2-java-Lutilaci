@@ -38,14 +38,16 @@ export function eventListenerAdder(){
         addCard[i].addEventListener("click", () => {
             console.log("clicked")
             let price = addCard[i].dataset.price;
+            console.log(price)
             let item = {
                 "id": addCard[i].dataset.id,
                 "productName": addCard[i].dataset.prodname,
                 "quantity": 0,
                 "description": addCard[i].dataset.description,
-                "price": price.toString(),
+                "price": price,
                 "picture": document.querySelector(".product-height").src
             }
+
             if (list.includes(addCard[i].dataset.id)) {
 
             } else {
@@ -69,7 +71,76 @@ export function eventListenerAdder(){
 function checkOutAddListener(){
     let checkOut = document.getElementById("checkOut");
     checkOut.addEventListener("click", ()=> {
-        console.log("HALLELUJA")
+        let modalBody = document.querySelector(".modal-body");
+        modalBody.innerHTML = `<div className="container shipping-details background">
+        <form action="/api/post/order-details" method="post">
+            <h1>
+                Shipping Details
+            </h1>
+            <div className="name">
+                <div className="grid">
+                    <label htmlFor="f-name">First name</label>
+                    <input type="text" name="f-name">
+                </div>
+                <div className="grid">
+                    <label htmlFor="l-name">Last name</label>
+                    <input type="text" name="l-name">
+                </div>
+                <div className="grid">
+                    <label htmlFor="email">Email</label>
+                    <input type="text" name="email">
+                </div>
+            </div>
+            <div className="street grid">
+                <label htmlFor="street">Street address</label>
+                <input type="text" name="address">
+            </div>
+            <div className="address-info">
+                <div className="grid">
+                    <label htmlFor="city">City</label>
+                    <input type="text" name="city">
+                </div>
+                <div className="grid">
+                    <label htmlFor="zip">Zip code</label>
+                    <input type="text" name="zip">
+                </div>
+            </div>
+    <div class="card-details container">
+        <h1>
+            Payment Information
+        </h1>
+        <div class="row">
+            <div class="form-group col-sm-7 grid cc-name">
+                <label for="card-holder">Cardholder</label>
+                <input type="text" name="card-holder">
+            </div>
+            <div class="form-group col-sm-5 end cc-exp">
+                <label class="grid" for="card-num">Expiry date</label>
+                <input class="exp" type="text" name="month" placeholder="MM" aria-label="MM" minlength="2" maxlength="2">
+                <span class="date-separator">/</span>
+                <input class="exp" type="text" name="year" placeholder="YY" aria-label="YY" minlength="2" maxlength="2">
+            </div>
+            <div class="cc-num form-group col-sm-8 grid">
+                <label for="card-num">Credit Card Number</label>
+                <input type="text" name="card-num" placeholder="XXXX-XXXX-XXXX-XXXX" minlength="16" maxlength="16">
+            </div>
+            <div class="form-group col-sm-4 end cc-cvc">
+                <label class="grid" for="card-num">CVC</label>
+                <input class="exp" type="text" name="security" placeholder="***" minlength="3" maxlength="3">
+            </div>
+        </div>
+        <div class="btns">
+            <button id="finish" class="btn btn-primary" type="submit">Complete payment</button>
+        </div>
+    </div>
+        </form>
+    </div>
+</div>
+</div>`
+    })
+    let finishBtn = document.getElementById("finish");
+    finishBtn.addEventListener("click", () => {
+
     })
 }
 
