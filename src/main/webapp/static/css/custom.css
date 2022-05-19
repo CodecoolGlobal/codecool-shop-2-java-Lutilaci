@@ -136,7 +136,7 @@ body{
 /* Modal Content/Box */
 .modal-content {
     /*background-color: #fefefe;*/
-    background-image: url('/static/img/moduloBackground.png');
+    background-image: url('/static/img/modalBackground.png');
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
@@ -278,6 +278,25 @@ input:focus {
 .item:nth-child(3) {
     border-top:  1px solid #E1E8EE;
     border-bottom:  1px solid #E1E8EE;
+}
+
+.delete-btn {
+    width: 18px;
+    height: 17px;
+    background: url('/static/img/bin.png') no-repeat center;
+}
+
+.modal {
+    width: 100%;
+}
+
+.modal-footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+#total-total-price{
+    font-size: xx-large;
 }
 
 .delete-btn {

@@ -17,30 +17,38 @@ function modalWindowHandler() {
     }
 }
 
-function eventListenerAdder(){
-    let totalTotalPrice = document.getElementById("total-total-price");
+async function eventListenerAdder(){
+    // let totalTotalPrice = document.getElementById("total-total-price");
     let itemPrice = document.querySelectorAll(".item-price");
-    let changeQuantity = document.querySelectorAll(".changeQuantity");
-    let minusButton = document.querySelectorAll(".minus-btn");
-    let plusButton = document.querySelectorAll(".plus-btn");
-    let totalPRice = document.querySelectorAll(".total-price");
+    // let changeQuantity = document.querySelectorAll(".changeQuantity");
+    // let minusButton = document.querySelectorAll(".minus-btn");
+    // let plusButton = document.querySelectorAll(".plus-btn");
+    // let totalPRice = document.querySelectorAll(".total-price");
     const addCard = document.querySelectorAll("#addToCart");
     let cartItemNumber = document.querySelector(".cart-item-number");
+    let modalBody = document.querySelector(".modal-body");
     cartItemNumber.innerText = "0";
-    let TP = 0;
+    let TP = 0 + " USD";
+    let shoppingCartContent = [];
+
+    let checkoutfooter = "<div class=\"modal-footer\">\n" +
+    "                    <div id=\"total-total-price\">" + TP + "</div>\n" +
+    "                    <button type=\"button\" class=\"btn btn-light\" id=\"checkOut\">\n" +
+    "                        Checkout\n" +
+    "                    </button>\n" +
+    "                </div>";
+
 
     for(let i = 0; i < addCard.length; i++){
-        let modalBody = document.querySelector(".modal-body");
         addCard[i].addEventListener("click", () => {
-            addProductToSessionStorage(addCard[i].dataset.id);
-            let productId = addCard[i].dataset.id;
             let price = addCard[i].dataset.price.split(" ");
-            let productPrice = price[0];
-            console.log(productPrice)
-            let productName = addCard[i].dataset.prodName;
-            let description = addCard[i].dataset.description;
-            document.querySelector(".product-height").src ="/static/img/product_" + productId + ".jpg";
-            modalBody.innerHTML += addToCart(productId, productPrice, productName, description);
+            let item = {"id": addCard[i].dataset.id, "productName": addCard[i].dataset.prodname, "description": addCard[i].dataset.description, "price": price[0], "picture": document.querySelector(".product-height").src}
+            shoppingCartContent.push(item);
+            console.log(shoppingCartContent)
+            addProductToSessionStorage(addCard[i].dataset.id);
+            // let TP = itemPrice[i].innerText.toString() + " USD";
+            inCartEventListenerPlacer();
+            // document.querySelector(".product-height").src ="/static/img/product_" + productId + ".jpg";
             let cartNumber = 0;
             let keySet = Object.keys(sessionStorage);
             for (let j = 0; j < keySet.length; j++) {
@@ -52,6 +60,25 @@ function eventListenerAdder(){
         })
         // let productName =
     }
+    return shoppingCartContent;
+    // shoppinGartContent += checkoutfooter;
+    // console.log(shoppingCartContent);
+    // modalBody.innerHTML = shoppinGartContent;
+    // modalBody.innerHTML += checkoutfooter;
+}
+
+function inCartEventListenerPlacer(){
+
+    let totalTotalPrice = document.getElementById("total-total-price");
+    let itemPrice = document.querySelectorAll(".item-price");
+    let changeQuantity = document.querySelectorAll(".changeQuantity");
+    let minusButton = document.querySelectorAll(".minus-btn");
+    let plusButton = document.querySelectorAll(".plus-btn");
+    let totalPRice = document.querySelectorAll(".total-price");
+    // const addCard = document.querySelectorAll("#addToCart");
+    let cartItemNumber = document.querySelector(".cart-item-number");
+    cartItemNumber.innerText = "0";
+    let TP = 0;
 
     for (let i = 0; i < totalPRice.length; i++) {
         TP += parseInt(totalPRice[i].innerText);
@@ -59,18 +86,17 @@ function eventListenerAdder(){
     }
 
     for (let i = 0; i < minusButton.length; i++) {
-        console.log(changeQuantity[i].value)
-        if (changeQuantity[i].value !== "1") {
             minusButton[i].addEventListener("click", () => {
+                if (changeQuantity[i].value !== "1") {
                 let counter = parseInt(changeQuantity[i].value);
                 counter--;
                 changeQuantity[i].value = counter.toString();
                 let totalpr = parseInt(itemPrice[i].innerText) * changeQuantity[i].value;
                 totalPRice[i].innerText = totalpr.toString() + " USD";
                 TP -= parseInt(itemPrice[i].innerText);
-                totalTotalPrice.innerText = "$" + TP.toString();
-            })
-        }
+                totalTotalPrice.innerText = "$" + TP;
+            }
+        })
     }
 
     for (let i = 0; i < plusButton.length; i++) {
@@ -81,13 +107,16 @@ function eventListenerAdder(){
             let totalpr = parseInt(itemPrice[i].innerText) * changeQuantity[i].value;
             totalPRice[i].innerText = totalpr.toString() + " USD";
             TP += parseInt(itemPrice[i].innerText);
-            totalTotalPrice.innerText = "$" + TP.toString();
+            totalTotalPrice.innerText = "$" + TP;
         })
     }
 }
 
-function addToCart(productId, price, productName, description, TP){
 
+
+function addToCart(productId, price, productName, description, TP){
+    let usd = "USD";
+    // let test = `hello ${productName}`
     return "     <!-- Product -->\n" +
         "                    <div class=\"card\">\n" +
         "                        <div class=\"item\">\n" +
@@ -95,7 +124,7 @@ function addToCart(productId, price, productName, description, TP){
         "                                <span class=\"delete-btn\"></span>\n" +
         "                            </div>\n" +
         "                            <div class=\"image\">\n" +
-        "                                <img class=\"product-height\" width=\"100\" height=\"auto\"/>\n" +
+        `                                <img class=\"product-height\" src=/static/img/product_${productId}.jpg width=\"100\" height=\"auto\"/>\n` +
         "                            </div>\n" +
         "                            <div class=\"description\">\n" +
         "                                <h4 class=\"card-title\">" + productName + "</h4>\n" +
@@ -114,18 +143,12 @@ function addToCart(productId, price, productName, description, TP){
         "                                    +\n" +
         "                                </button>\n" +
         "                            </div>\n" +
-        "                            <div class=\"total-price\">" + TP + "</div>\n" +
+        "                            <div class=\"total-price\">" + price + "</div>\n" +
         "                        </div>\n" +
         "                    </div>\n" +
         "                    <br>\n" +
         "\n" +
-        "                </div>\n" +
-        "                <div class=\"modal-footer\">\n" +
-        "                    <div id=\"total-total-price\">" + TP + "</div>\n" +
-        "                    <button type=\"button\" class=\"btn btn-light\" id=\"checkOut\">\n" +
-        "                        Checkout\n" +
-        "                    </button>\n" +
-        "                </div>";
+        "                </div>\n";
 
 }
 
@@ -152,6 +175,9 @@ function sessionStorageHandler(){
 
     sessionStorage.clear();
 }
-eventListenerAdder()
+
+sessionStorage.clear();
 modalWindowHandler()
+eventListenerAdder()
+
 // sessionStorageHandler()
