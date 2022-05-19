@@ -26,7 +26,6 @@ public class ProductCategoryServlet extends HttpServlet {
         int catId = Integer.parseInt(request.getParameter("catId"));
         List<Product> productList = productService.getProductsForCategory(catId);
 
-        //Create new Gson to create Json response.
         Gson gson = new Gson();
         String json = "";
 
