@@ -50,3 +50,4 @@ async function eventHandler(url){
 }
 
 productFiltering()
+categoryFiltering()
