@@ -2,16 +2,15 @@ package com.codecool.shop.service;
 
 import com.codecool.shop.model.OrderDetails;
 
-import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
+@WebServlet (name="OrderDetails", urlPatterns = {"/api/post/order-details"})
 public class ShippingServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IllegalStateException {
 
         String firstName = req.getParameter("f-name");
         String lastName = req.getParameter("l-name");
@@ -22,7 +21,12 @@ public class ShippingServlet extends HttpServlet {
 
         OrderDetails orderDetails = new OrderDetails(firstName, lastName, email, address, city, zip);
 
-        System.out.println(orderDetails);
+        System.out.println(orderDetails.firstName);
+        System.out.println(orderDetails.lastName);
+        System.out.println(orderDetails.email);
+        System.out.println(orderDetails.street);
+        System.out.println(orderDetails.city);
+        System.out.println(orderDetails.zipCode);
         // TODO: create new object and set its fields from request!
     }
 }
