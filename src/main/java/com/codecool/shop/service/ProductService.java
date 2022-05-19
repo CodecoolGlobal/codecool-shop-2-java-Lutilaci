@@ -12,6 +12,7 @@ import java.util.List;
 public class ProductService{
     private ProductDao productDao;
     private ProductCategoryDao productCategoryDao;
+    private SupplierDao supplierDao;
 
     public ProductService(ProductDao productDao, ProductCategoryDao productCategoryDao) {
         this.productDao = productDao;
