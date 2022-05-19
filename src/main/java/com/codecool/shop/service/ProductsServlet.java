@@ -24,9 +24,9 @@ public class ProductsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
+        SupplierDao supplierDao = SupplierDaoMem.getInstance();
 
-        List<Product> products = productService.getAllProducts();
+        ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDao);
 
         Gson gson = new Gson();
         String json = "";
