@@ -67,3 +67,30 @@ h1{
 .end{
     text-align: end;
 }
+
+td, th{
+    padding-top: 15px;
+    margin: 0 !important;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #474b4e;
+    text-transform: uppercase;
+}
+
+.data{
+    text-align: end;
+    color: #000000;
+}
+
+.producttable{
+    border: 1px solid #79818a;
+    border-collapse: collapse;
+    border-radius: 0.25rem;
+    text-align: center;
+    color: #000000;
+}
+
+table{
+    width: 100%;
+}
