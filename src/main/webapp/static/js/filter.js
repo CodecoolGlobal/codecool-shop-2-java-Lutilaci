@@ -43,10 +43,8 @@ function categoryFiltering(){
 
 }
 
-async function eventHandler(productId){
-    let url = "product";
-    let param = "prodid";
-    let response = await apiGet(url, param, productId);
+async function eventHandler(url){
+    let response = await apiGet(url);
     const rowClass = document.getElementById("products");
     rowClass.innerHTML = rowBuilder(response);
 }
