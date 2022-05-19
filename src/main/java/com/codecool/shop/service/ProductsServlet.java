@@ -28,9 +28,34 @@ public class ProductsServlet extends HttpServlet {
 
         ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDao);
 
+        String catId = request.getParameter("catid");
+        String suppId = request.getParameter("suppid");
+
+        List<Product> products;
         Gson gson = new Gson();
         String json = "";
-        json += gson.toJson(products);
+
+        if(catId != null && suppId != null){
+            List<Product> placeholder = new ArrayList<>();
+            placeholder = productService.getProductsForCategory(Integer.parseInt(catId));
+            List<Product> providedProducts = new ArrayList<>();
+            placeholder.forEach(product -> {
+                if(supplierDao.find(Integer.parseInt(suppId)) == product.getSupplier()){
+                    providedProducts.add(product);
+                }
+            });
+            products = providedProducts;
+            json += gson.toJson(products);
+        } else if (catId != null){
+            products = productService.getProductsForCategory(Integer.parseInt(catId));
+            json += gson.toJson(products);
+        } else if (suppId != null){
+            products = supplierDao.find(Integer.parseInt(suppId)).getProducts();
+            json += gson.toJson(products);
+        } else {
+            products = productService.getAllProducts();
+            json += gson.toJson(products);
+        }
         response.getOutputStream().print(json);
     }
 }
