@@ -32,7 +32,7 @@ public class Get extends HttpServlet {
 
 //        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
 //        WebContext context = new WebContext(req, resp, req.getServletContext());
-        String prodId = req.getParameter("prodid");
+        String prodId = req.getParameter("prodId");
 
 //        List<Product> playground = productService.getProductsForCategory(1);
         Product productList = productDataStore.find(Integer.parseInt(prodId));
