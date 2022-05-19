@@ -1,24 +1,37 @@
 import {rowBuilder} from "./cardFactory.js";
 import {apiGet} from "./api.js";
 
-function productFiltering(){
-    const products = document.querySelectorAll(".product");
-    for(let i = 0; i < products.length; i++){
-        let id = products[i].dataset.prodid
-        products[i].addEventListener("click", async () => {
-            if(products[i].classList.contains("highlight")){
-                let url = `/api/get/products`
-                await eventHandler(url)
-                removeHighlight()
-                changeProductButton("Products")
+let supp_id = 0
+let cat_id = 0
+function supplierFiltering(){
+    const suppliers = document.querySelectorAll(".supplier");
+    suppliers.forEach((supplier) => {
+        supplier.addEventListener("click", async () => {
+            let supplierId = supplier.dataset.suppid
+            let url;
+            supp_id = supplierId
+            if(supplier.classList.contains("highlight")){
+                supp_id = 0
+                removeSupplierHighlight()
+                changeSupplierButtonText("Supplier");
+                if(cat_id === 0){
+                    url = "/api/get/products"
+                } else {
+                    url = `/api/get/products?catid=${cat_id}`
+                }
             } else {
-                highlight(products[i])
-                changeProductButton(products[i].textContent)
-                let url = `/api/get/product?prodid=${id}`
-                await eventHandler(url)
+                removeSupplierHighlight()
+                changeSupplierButtonText(supplier.innerText)
+                highlight(supplier)
+                if(cat_id === 0){
+                    url = `/api/get/products?suppid=${supplierId}`
+                } else {
+                    url = `/api/get/products?suppid=${supplierId}&catid=${cat_id}`
+                }
             }
+            await eventHandler(url)
         })
-    }
+    })
 }
 
 function categoryFiltering(){
@@ -26,17 +39,29 @@ function categoryFiltering(){
     categories.forEach((category) => {
         category.addEventListener("click", async () =>{
             let id = category.dataset.catid
+            let url;
+            cat_id = id
             if(category.classList.contains("highlight")){
-                let url = `/api/get/products`
-                await eventHandler(url)
-                removeHighlight()
-                changeCategoryButton("Category")
+                cat_id = 0
+
+                changeCategoryButtonText("Category")
+                removeCategoryHighlight()
+                if(supp_id === 0){
+                    url = "/api/get/products"
+                } else {
+                    url = `/api/get/products?suppid=${supp_id}`
+                }
             } else {
+                removeCategoryHighlight()
+                changeCategoryButtonText(category.innerText)
                 highlight(category)
-                changeCategoryButton(category.textContent)
-                let url = `/api/get/products-by-category?catId=${id}`
-                await eventHandler(url)
+                if(supp_id === 0){
+                    url = `/api/get/products?catid=${id}`
+                } else {
+                    url = `/api/get/products?suppid=${supp_id}&catid=${id}`
+                }
             }
+            await eventHandler(url);
         })
     })
 
@@ -48,31 +73,33 @@ async function eventHandler(url){
     rowClass.innerHTML = rowBuilder(response);
 }
 
-function changeProductButton(name){
-    const productDropDownButton = document.getElementById("productDropDownMenu");
-    productDropDownButton.innerText = name;
+function changeSupplierButtonText(name){
+    const supplierDropDownButton = document.getElementById("supplierDropDownMenu");
+    supplierDropDownButton.innerText = name;
 }
 
-function changeCategoryButton(name){
-    const categoryDropDownButton = document.getElementById("supplierDropDownMenu");
+function changeCategoryButtonText(name){
+    const categoryDropDownButton = document.getElementById("categoryDropDownMenu");
     categoryDropDownButton.innerText = name;
 }
 
-function removeHighlight(){
-    const products = document.querySelectorAll(".product")
+function removeCategoryHighlight(){
     const categories = document.querySelectorAll(".category")
-    products.forEach(product => {
-        product.classList.remove("highlight")
+    categories.forEach(categories => {
+        categories.classList.remove("highlight")
     })
-    categories.forEach(category => {
-        category.classList.remove("highlight")
+}
+
+function removeSupplierHighlight(){
+    const suppliers = document.querySelectorAll(".supplier")
+    suppliers.forEach(supplier => {
+        supplier.classList.remove("highlight")
     })
 }
 
 function highlight(element){
-    removeHighlight()
     element.classList.add("highlight")
 }
 
-productFiltering()
+supplierFiltering()
 categoryFiltering()
