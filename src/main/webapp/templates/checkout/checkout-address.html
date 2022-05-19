@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/src/main/webapp/static/css/checkout.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="wrapper shadow-dreamy">
+    <div class="container shipping-details background">
+        <form action="" method="post">
+            <h1>
+                Shipping Details
+            </h1>
+            <div class="name">
+                <div class="grid">
+                    <label for="f-name">First name</label>
+                    <input type="text" name="f-name">
+                </div>
+                <div class="grid">
+                    <label for="l-name">Last name</label>
+                    <input type="text" name="l-name">
+                </div>
+            </div>
+            <div class="street grid">
+                <label for="street">Street address</label>
+                <input type="text" name="address">
+            </div>
+            <div class="address-info">
+                <div class="grid">
+                    <label for="city">City</label>
+                    <input type="text" name="city">
+                </div>
+                <div class="grid">
+                    <label for="zip">Zip code</label>
+                    <input type="text" name="zip">
+                </div>
+            </div>
+
+            <div class="btns">
+                <button class="btn btn-primary">Back to cart</button>
+                <button class="btn btn-primary" type="submit">Continue to payment</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
