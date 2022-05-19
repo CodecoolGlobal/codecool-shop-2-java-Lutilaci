@@ -28,15 +28,7 @@ public class ProductCategoryServlet extends HttpServlet {
 
         Gson gson = new Gson();
         String json = "";
-
-        if(productList.size() > 0){
-            for(int i = 0; i < productList.size(); i++){
-                json += gson.toJson(productList.get(i));
-            }
-        } else {
-            json = gson.toJson(null);
-        }
-        //Return Json response's first iteration
+        json += gson.toJson(productList);
         response.getOutputStream().print(json);
     }
 }
