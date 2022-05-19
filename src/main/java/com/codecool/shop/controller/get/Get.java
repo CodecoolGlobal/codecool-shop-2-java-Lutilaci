@@ -30,7 +30,9 @@ public class Get extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
+        SupplierDao supplierDao = SupplierDaoMem.getInstance();
+
+        ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDao);
 
 //        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
 //        WebContext context = new WebContext(req, resp, req.getServletContext());
