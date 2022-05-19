@@ -49,5 +49,31 @@ async function eventHandler(url){
     rowClass.innerHTML = rowBuilder(response);
 }
 
+function changeProductButton(name){
+    const productDropDownButton = document.getElementById("productDropDownMenu");
+    productDropDownButton.innerText = name;
+}
+
+function changeCategoryButton(name){
+    const categoryDropDownButton = document.getElementById("supplierDropDownMenu");
+    categoryDropDownButton.innerText = name;
+}
+
+function removeHighlight(){
+    const products = document.querySelectorAll(".product")
+    const categories = document.querySelectorAll(".category")
+    products.forEach(product => {
+        product.classList.remove("highlight")
+    })
+    categories.forEach(category => {
+        category.classList.remove("highlight")
+    })
+}
+
+function highlight(element){
+    removeHighlight()
+    element.classList.add("highlight")
+}
+
 productFiltering()
 categoryFiltering()
