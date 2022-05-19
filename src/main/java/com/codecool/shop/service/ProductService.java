@@ -33,4 +33,6 @@ public class ProductService{
         return productDao.getAll();
     }
 
+    public List<Supplier> getAllSupplier() { return supplierDao.getAll(); }
+
 }
