@@ -21,9 +21,26 @@ function productFiltering(){
     }
 }
 
-function changeButton(name){
-    const productDropDownButton = document.getElementById("productDropDownMenu");
-    productDropDownButton.innerText = name;
+function categoryFiltering(){
+    const categories = document.querySelectorAll(".category");
+    categories.forEach((category) => {
+        console.log(category)
+        category.addEventListener("click", async () =>{
+            let id = category.dataset.catid
+            if(category.classList.contains("highlight")){
+                let url = `/api/get/products`
+                await eventHandler(url)
+                removeHighlight()
+                changeCategoryButton("Category")
+            } else {
+                highlight(category)
+                changeCategoryButton(category.textContent)
+                let url = `/api/get/products-by-category?catId=${id}`
+                await eventHandler(url)
+            }
+        })
+    })
+
 }
 
 async function eventHandler(productId){
