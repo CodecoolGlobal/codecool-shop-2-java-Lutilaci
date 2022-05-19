@@ -24,7 +24,6 @@ function productFiltering(){
 function categoryFiltering(){
     const categories = document.querySelectorAll(".category");
     categories.forEach((category) => {
-        console.log(category)
         category.addEventListener("click", async () =>{
             let id = category.dataset.catid
             if(category.classList.contains("highlight")){
