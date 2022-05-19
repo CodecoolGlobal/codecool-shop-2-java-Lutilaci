@@ -5,7 +5,19 @@ function productFiltering(){
     const products = document.querySelectorAll(".product");
     for(let i = 0; i < products.length; i++){
         let id = products[i].dataset.prodid
-        products[i].addEventListener("click", async () => {await eventHandler(id)})
+        products[i].addEventListener("click", async () => {
+            if(products[i].classList.contains("highlight")){
+                let url = `/api/get/products`
+                await eventHandler(url)
+                removeHighlight()
+                changeProductButton("Products")
+            } else {
+                highlight(products[i])
+                changeProductButton(products[i].textContent)
+                let url = `/api/get/product?prodid=${id}`
+                await eventHandler(url)
+            }
+        })
     }
 }
 
