@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/static/css/checkout.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" type="text/css">
+</head>
+<body>
+<div class="wrapper shadow-dreamy">
+    <div class="container">
+            <h1>
+                Order confirmation
+            </h1>
+            <div class="row">
+                <div class="col-md-auto">
+                    <label>Shipping info</label>
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td class="data" th:text="${firstName +' '+ lastName}"></td>
+                        </tr>
+                        <tr>
+                            <td>Street</td>
+                            <td class="data" th:text="${address}"></td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td class="data" th:text="${city}"></td>
+                        </tr>
+                        <tr>
+                            <td>Zip code</td>
+                            <td class="data" th:text="${zip}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-auto">
+                    <label>Payment info</label>
+                    <table>
+                        <tr>
+                            <td>Amount</td>
+                            <td class="data">$ 236.00</td>
+                        </tr>
+                        <tr>
+                            <td>Card</td>
+                            <td class="data">****4567</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td class="data">Successful</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td class="data" th:text="${email}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        <h1>Products</h1>
+        <div class="col">
+                <div>
+                    <table class="producttable">
+                        <thead>
+                        <tr class="producttable">
+                            <th scope="col" class="producttable">Product</th>
+                            <th scope="col" class="producttable">Amount</th>
+                            <th scope="col" class="producttable">Unit price</th>
+                            <th scope="col" class="producttable">Total price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="producttable">
+                            <td class=" producttable">Bottle Water</td>
+                            <td class=" producttable">2</td>
+                            <td class=" producttable">$ 8.00</td>
+                            <td class=" producttable">$ 16.00</td>
+                        </tr>
+                        <tr class="producttable">
+                            <td class=" producttable">Self-watering can</td>
+                            <td class=" producttable">1</td>
+                            <td class=" producttable">$ 20.00</td>
+                            <td class=" producttable">$ 20.00</td>
+                        </tr>
+                        <tr class="producttable">
+                            <td class=" producttable">Double Champagne Glass</td>
+                            <td class=" producttable">4</td>
+                            <td class=" producttable">$ 50.00</td>
+                            <td class=" producttable">$ 200.00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>

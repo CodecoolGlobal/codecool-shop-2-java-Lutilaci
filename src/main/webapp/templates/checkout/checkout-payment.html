@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/src/main/webapp/static/css/checkout.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="wrapper shadow-dreamy">
+    <div class="card-details container">
+        <form action="" method="post">
+            <h1>
+                Payment Information
+            </h1>
+            <div class="row">
+            <div class="form-group col-sm-7 grid cc-name">
+                <label for="card-holder">Cardholder</label>
+                <input type="text" name="card-holder">
+            </div>
+            <div class="form-group col-sm-5 end cc-exp">
+                <label class="grid" for="card-num">Expiry date</label>
+                <input class="exp" type="text" name="month" placeholder="MM" aria-label="MM" minlength="2" maxlength="2">
+                <span class="date-separator">/</span>
+                <input class="exp" type="text" name="year" placeholder="YY" aria-label="YY" minlength="2" maxlength="2">
+            </div>
+            <div class="cc-num form-group col-sm-8 grid">
+                <label for="card-num">Credit Card Number</label>
+                <input type="text" name="card-num" placeholder="XXXX-XXXX-XXXX-XXXX" minlength="16" maxlength="16">
+            </div>
+            <div class="form-group col-sm-4 end cc-cvc">
+                <label class="grid" for="card-num">CVC</label>
+                <input class="exp" type="text" name="security" placeholder="***" minlength="3" maxlength="3">
+            </div>
+            </div>
+            <div class="btns">
+                <button class="btn btn-primary">Back to shipping</button>
+                <button class="btn btn-primary" type="submit">Complete payment</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
