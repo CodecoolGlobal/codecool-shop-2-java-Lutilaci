@@ -18,19 +18,19 @@
                     <table>
                         <tr>
                             <td>Name</td>
-                            <td class="data">John Smith</td>
+                            <td class="data" th:text="${customer.firstName + customer.lastName}"></td>
                         </tr>
                         <tr>
                             <td>Street</td>
-                            <td class="data">Washington street 25.</td>
+                            <td class="data" th:text="${customer.address}"></td>
                         </tr>
                         <tr>
                             <td>City</td>
-                            <td class="data">Budapest</td>
+                            <td class="data" th:text="${customer.city}"></td>
                         </tr>
                         <tr>
                             <td>Zip code</td>
-                            <td class="data">1065</td>
+                            <td class="data" th:text="${customer.zip}"></td>
                         </tr>
                     </table>
                 </div>
@@ -39,11 +39,11 @@
                     <table>
                         <tr>
                             <td>Amount</td>
-                            <td class="data">$500.00</td>
+                            <td class="data">$ 236.00</td>
                         </tr>
                         <tr>
                             <td>Card</td>
-                            <td class="data">****1234</td>
+                            <td class="data">****4567</td>
                         </tr>
                         <tr>
                             <td>Status</td>
@@ -51,7 +51,7 @@
                         </tr>
                         <tr>
                             <td>Email</td>
-                            <td class="data">email@email.com</td>
+                            <td class="data" th:text="${customer.email}"></td>
                         </tr>
                     </table>
                 </div>
@@ -76,16 +76,16 @@
                             <td class=" producttable">$ 16.00</td>
                         </tr>
                         <tr class="producttable">
-                            <td class=" producttable">Bottle Water</td>
-                            <td class=" producttable">2</td>
-                            <td class=" producttable">$ 8.00</td>
-                            <td class=" producttable">$ 16.00</td>
+                            <td class=" producttable">Self-watering can</td>
+                            <td class=" producttable">1</td>
+                            <td class=" producttable">$ 20.00</td>
+                            <td class=" producttable">$ 20.00</td>
                         </tr>
                         <tr class="producttable">
-                            <td class=" producttable">Bottle Water</td>
-                            <td class=" producttable">2</td>
-                            <td class=" producttable">$ 8.00</td>
-                            <td class=" producttable">$ 16.00</td>
+                            <td class=" producttable">Double Champagne Glass</td>
+                            <td class=" producttable">4</td>
+                            <td class=" producttable">$ 50.00</td>
+                            <td class=" producttable">$ 200.00</td>
                         </tr>
                         </tbody>
                     </table>
