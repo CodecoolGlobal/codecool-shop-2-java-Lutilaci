@@ -1,11 +1,4 @@
 let shoppingCartContent = [];
-// let checkoutfooter = "<div class=\"modal-footer\">\n" +
-//     "                    <div id=\"total-total-price\">" + 0 + "</div>\n" +
-//     "                    <button type=\"button\" class=\"btn btn-light\" id=\"checkOut\">\n" +
-//     "                        Checkout\n" +
-//     "                    </button>\n" +
-//     "                </div>";
-
 
 function modalWindowHandler() {
     let modal = document.getElementById("myModal");
@@ -16,7 +9,7 @@ function modalWindowHandler() {
     btn.onclick = function () {
         modal.style.display = "block";
         modalBody.innerHTML = addToCart(shoppingCartContent);
-        // modalBody.innerHTML += checkoutfooter;
+        checkOutAddListener()
         inCartEventListenerPlacer();
     }
 
@@ -32,18 +25,31 @@ function modalWindowHandler() {
 }
 
 function eventListenerAdder(){
-    let itemPrice = document.querySelectorAll(".item-price");
-    const addCard = document.querySelectorAll("#addToCart");
+    let addCard = document.querySelectorAll("#addToCart");
     let cartItemNumber = document.querySelector(".cart-item-number");
-    let modalBody = document.querySelector(".modal-body");
     cartItemNumber.innerText = "0";
-    let TP = 0 + " USD";
 
 
-    for(let i = 0; i < addCard.length; i++){
+    let list = []
+    let count = {"id": 0}
+
+    let counter = 0;
+    for(let i = 0; i < addCard.length; i++) {
         addCard[i].addEventListener("click", () => {
             let price = addCard[i].dataset.price.split(" ");
-            let item = {"id": addCard[i].dataset.id, "productName": addCard[i].dataset.prodname, "description": addCard[i].dataset.description, "price": price[0], "picture": document.querySelector(".product-height").src}
+            let item = {
+                "id": addCard[i].dataset.id,
+                "productName": addCard[i].dataset.prodname,
+                "quantity": 0,
+                "description": addCard[i].dataset.description,
+                "price": price[0],
+                "picture": document.querySelector(".product-height").src
+            }
+            if (list.includes(addCard[i].dataset.id)) {
+
+            } else {
+                list.push(addCard[i].dataset.id)
+            }
             shoppingCartContent.push(item);
             console.log(shoppingCartContent)
             addProductToSessionStorage(addCard[i].dataset.id);
@@ -57,7 +63,13 @@ function eventListenerAdder(){
             cartItemNumber.innerText = cartNumber.toString();
         })
     }
+}
 
+function checkOutAddListener(){
+    let checkOut = document.getElementById("checkOut");
+    checkOut.addEventListener("click", ()=> {
+        console.log("HALLELUJA")
+    })
 }
 
 function inCartEventListenerPlacer(){
@@ -68,7 +80,6 @@ function inCartEventListenerPlacer(){
     let minusButton = document.querySelectorAll(".minus-btn");
     let plusButton = document.querySelectorAll(".plus-btn");
     let totalPRice = document.querySelectorAll(".total-price");
-    // const addCard = document.querySelectorAll("#addToCart");
     let cartItemNumber = document.querySelector(".cart-item-number");
     cartItemNumber.innerText = "0";
     let TP = 0;
@@ -106,53 +117,70 @@ function inCartEventListenerPlacer(){
 }
 
 
-
 function addToCart(shoppingCartContent) {
+    let setOfIds = []
+    shoppingCartContent.forEach(sct => {
+        if(!setOfIds.includes(sct.id)){
+            setOfIds.push(sct.id)
+        }
+    })
     let modalContent = "";
-    for (let i = 0; i < shoppingCartContent.length; i++) {
-        modalContent += "     <!-- Product -->\n" +
-            "                    <div class=\"card\">\n" +
+    setOfIds.forEach(id => {
+        let count = 0
+        let productName = "";
+        let description = ""
+        let price = ""
+
+        for(let i = 0; i < shoppingCartContent.length; i++){
+            if(shoppingCartContent[i].id == id){
+                count++
+                productName = shoppingCartContent[i].productName
+                description = shoppingCartContent[i].description
+                price = shoppingCartContent[i].price
+
+            }
+        }
+        modalContent += "        <div class=\"card\">\n" +
             "                        <div class=\"item\">\n" +
             "                            <div class=\"buttons\">\n" +
             "                                <span class=\"delete-btn\"></span>\n" +
             "                            </div>\n" +
             "                            <div class=\"image\">\n" +
-            `                                <img class=\"product-height\" src=/static/img/product_${shoppingCartContent[i].id}.jpg width=\"auto\" height=\"auto\"/>\n` +
+            `                                <img class=\"product-height\" src=/static/img/product_${id}.jpg width=\"auto\" height=\"auto\"/>\n` +
             "                            </div>\n" +
             "                            <div class=\"description\">\n" +
-            "                                <h4 class=\"card-title\">" + shoppingCartContent[i].productName + "</h4>\n" +
-            "                                <p class=\"card-text prod-desc\">" + shoppingCartContent[i].description + "</p>\n" +
+            "                                <h4 class=\"card-title\">" + productName + "</h4>\n" +
+            "                                <p class=\"card-text prod-desc\">" + description + "</p>\n" +
             "                            </div>\n" +
             "                            <div class=\"card-text\">\n" +
-            `                                <p class=\"lead item-price\"> ${shoppingCartContent[i].price}  USD </p>\n` +
+            `                                <p class=\"lead item-price\"> ${price}  USD </p>\n` +
             "                            </div>\n" +
-            "\n" +
             "                            <div class=\"quantity\">\n" +
             "                                <button class=\"minus-btn\" type=\"button\" name=\"button\">\n" +
             "                                    -\n" +
             "                                </button>\n" +
-            "                                <input type=\"text\" name=\"name\" class=\"changeQuantity\" value=\"1\">\n" +
+            `                                <input type=\"text\" name=\"name\" class=\"changeQuantity\" value=\"${count}\">\n` +
             "                                <button class=\"plus-btn\" type=\"button\" name=\"button\">\n" +
             "                                    +\n" +
             "                                </button>\n" +
             "                            </div>\n" +
-            "                            <div class=\"total-price\">" + shoppingCartContent[i].price + "</div>\n" +
+            `                            <div class=\"total-price\"> ${price*count} USD </div>\n` +
             "                        </div>\n" +
             "                    </div>\n" +
             "                    <br>\n" +
-            "\n" +
             "                </div>\n";
-    }
+
+        //Create card here with
+
+    })
     modalContent += "<div class=\"modal-footer\">\n" +
-        "                    <div id=\"total-total-price\">" + 0 + "</div>\n" +
+        `                    <div id=\"total-total-price\"> 0 </div>\n` +
         "                    <button type=\"button\" class=\"btn btn-light\" id=\"checkOut\">\n" +
         "                        Checkout\n" +
         "                    </button>\n" +
         "                </div>";
-    return modalContent;
+    return modalContent
 }
-
-
 
 function addProductToSessionStorage(productId){
     let data = sessionStorage.getItem(productId)
@@ -162,6 +190,7 @@ function addProductToSessionStorage(productId){
         sessionStorage.setItem(productId, "1");
     }
 }
+
 function sessionStorageHandler(){
     // Save data to sessionStorage
     sessionStorage.setItem('key', 'value');
@@ -179,5 +208,4 @@ function sessionStorageHandler(){
 
 eventListenerAdder()
 modalWindowHandler()
-
 // sessionStorageHandler()
