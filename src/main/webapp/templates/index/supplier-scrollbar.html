@@ -6,8 +6,8 @@
         <button class="btn btn-secondary dropdown-toggle dropdown" type="button" id="supplierDropDownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Suppliers
         </button>
-        <div class="dropdown-menu" aria-labelledby="supplierDropDownMenu">
-            <a class="dropdown-item category" th:each="cat : ${category}" th:text="${cat.name}" th:data-catid="${cat.id}"></a>
+        <div class="dropdown-menu" aria-labelledby="productDropDownMenu">
+            <a class="dropdown-item supplier" th:each="supp : ${suppliers}" th:text="${supp.name}" th:data-suppid="${supp.id}"></a>
         </div>
     </div>
 </body>
