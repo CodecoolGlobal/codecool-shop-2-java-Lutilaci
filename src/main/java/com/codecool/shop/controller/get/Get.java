@@ -32,14 +32,19 @@ public class Get extends HttpServlet {
 
 //        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
 //        WebContext context = new WebContext(req, resp, req.getServletContext());
+        String prodId = req.getParameter("prodId");
 
-        List<Product> playground = productService.getProductsForCategory(1);
+//        List<Product> playground = productService.getProductsForCategory(1);
+        Product productList = productDataStore.find(Integer.parseInt(prodId));
         Gson gson = new Gson();
+        String json = "";
+        json += gson.toJson(productList);
+        resp.getOutputStream().print(json);
 //        for(Product product: playground){
 //            product.setProductCategory(new ProductCategory("Valami", "Valami","valami"));
 //            product.getSupplier().setProducts(new ArrayList<>());
 //        }
-        String json = gson.toJson(playground.get(0));
-        resp.getOutputStream().print(json);
+//        String json = gson.toJson(playground.get(0));
+//        resp.getOutputStream().print(json);
     }
 }
