@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Checkout</title>
-    <link rel="stylesheet" href="/src/main/webapp/static/css/checkout.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/checkout.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" type="text/css">
 </head>
 <body>
 <div class="wrapper shadow-dreamy">
@@ -18,19 +19,19 @@
                     <table>
                         <tr>
                             <td>Name</td>
-                            <td class="data" th:text="${customer.firstName + customer.lastName}"></td>
+                            <td class="data" th:text="${firstName +' '+ lastName}"></td>
                         </tr>
                         <tr>
                             <td>Street</td>
-                            <td class="data" th:text="${customer.address}"></td>
+                            <td class="data" th:text="${address}"></td>
                         </tr>
                         <tr>
                             <td>City</td>
-                            <td class="data" th:text="${customer.city}"></td>
+                            <td class="data" th:text="${city}"></td>
                         </tr>
                         <tr>
                             <td>Zip code</td>
-                            <td class="data" th:text="${customer.zip}"></td>
+                            <td class="data" th:text="${zip}"></td>
                         </tr>
                     </table>
                 </div>
@@ -51,7 +52,7 @@
                         </tr>
                         <tr>
                             <td>Email</td>
-                            <td class="data" th:text="${customer.email}"></td>
+                            <td class="data" th:text="${email}"></td>
                         </tr>
                     </table>
                 </div>

@@ -17,21 +17,12 @@ import java.util.List;
 public class ShippingServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IllegalStateException, IOException {
-        List<String> customer = new ArrayList<>();
         String firstName = req.getParameter("f-name");
         String lastName = req.getParameter("l-name");
         String email = req.getParameter("email");
         String address = req.getParameter("address");
         String city = req.getParameter("city");
         String zip = req.getParameter("zip");
-
-        customer.add(firstName);
-        customer.add(lastName);
-        customer.add(email);
-        customer.add(address);
-        customer.add(city);
-        customer.add(zip);
-
 
         OrderDetails orderDetails = new OrderDetails(firstName, lastName, email, address, city, zip);
 
@@ -44,18 +35,25 @@ public class ShippingServlet extends HttpServlet {
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("costumer", customer);
+        context.setVariable("firstName", firstName);
+        context.setVariable("lastName", lastName);
+        context.setVariable("address", address);
+        context.setVariable("city", city);
+        context.setVariable("zip", zip);
+        context.setVariable("email", email);
+
+
 
         engine.process("checkout/order-summary.html", context, resp.getWriter());
 
 
         // TODO: create new object and set its fields from request!
     }
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-//        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
-//        WebContext context = new WebContext(req, resp, req.getServletContext());
-//
-//        engine.process("checkout/order-summary.html", context, resp.getWriter());
-//
-//    }
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+        WebContext context = new WebContext(req, resp, req.getServletContext());
+
+        engine.process("checkout/order-summary.html", context, resp.getWriter());
+
+    }
 }
