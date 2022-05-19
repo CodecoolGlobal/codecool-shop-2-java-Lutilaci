@@ -137,8 +137,7 @@ function addToCart(shoppingCartContent) {
                 count++
                 productName = shoppingCartContent[i].productName
                 description = shoppingCartContent[i].description
-                price = shoppingCartContent[i].price.toString();
-
+                price = shoppingCartContent[i].price.split(" ")[0];
             }
         }
         modalContent += "        <div class=\"card\">\n" +
@@ -154,7 +153,7 @@ function addToCart(shoppingCartContent) {
             "                                <p class=\"card-text prod-desc\">" + description + "</p>\n" +
             "                            </div>\n" +
             "                            <div class=\"card-text\">\n" +
-            `                                <p class=\"lead item-price\"> ${price}  </p>\n` +
+            `                                <p class=\"lead item-price\"> ${price} USD </p>\n` +
             "                            </div>\n" +
             "                            <div class=\"quantity\">\n" +
             "                                <button class=\"minus-btn\" type=\"button\" name=\"button\">\n" +
