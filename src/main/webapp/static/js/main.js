@@ -6,12 +6,12 @@ function modalWindowHandler() {
     let span = document.getElementsByClassName("close")[0];
     let modalBody = document.querySelector(".modal-body");
 
-    btn.onclick = function () {
+    btn.addEventListener("click", ()=> {
         modal.style.display = "block";
         modalBody.innerHTML = addToCart(shoppingCartContent);
-        checkOutAddListener()
         inCartEventListenerPlacer();
-    }
+        checkOutAddListener()
+    })
 
     span.onclick = function () {
         modal.style.display = "none";
@@ -31,13 +31,13 @@ export function eventListenerAdder(){
 
 
     let list = []
-    let count = {"id": 0}
-
-    let counter = 0;
+    // let count = {"id": 0}
+    //
+    // let counter = 0;
     for(let i = 0; i < addCard.length; i++) {
         addCard[i].addEventListener("click", () => {
             console.log("clicked")
-            let price = addCard[i].dataset.price;
+            let price = addCard[i].dataset.price.split(" ")[0];
             console.log(price)
             let item = {
                 "id": addCard[i].dataset.id,
@@ -72,35 +72,35 @@ function checkOutAddListener(){
     let checkOut = document.getElementById("checkOut");
     checkOut.addEventListener("click", ()=> {
         let modalBody = document.querySelector(".modal-body");
-        modalBody.innerHTML = `<div className="container shipping-details background">
+        modalBody.innerHTML = `<div class="container shipping-details background">
         <form action="/api/post/order-details" method="post">
             <h1>
                 Shipping Details
             </h1>
-            <div className="name">
-                <div className="grid">
+            <div class="name">
+                <div class="grid">
                     <label htmlFor="f-name">First name</label>
                     <input type="text" name="f-name">
                 </div>
-                <div className="grid">
+                <div class="grid">
                     <label htmlFor="l-name">Last name</label>
                     <input type="text" name="l-name">
                 </div>
-                <div className="grid">
+                <div class="grid">
                     <label htmlFor="email">Email</label>
                     <input type="text" name="email">
                 </div>
             </div>
-            <div className="street grid">
+            <div class="street grid">
                 <label htmlFor="street">Street address</label>
                 <input type="text" name="address">
             </div>
-            <div className="address-info">
-                <div className="grid">
+            <div class="address-info">
+                <div class="grid">
                     <label htmlFor="city">City</label>
                     <input type="text" name="city">
                 </div>
-                <div className="grid">
+                <div class="grid">
                     <label htmlFor="zip">Zip code</label>
                     <input type="text" name="zip">
                 </div>
@@ -140,7 +140,7 @@ function checkOutAddListener(){
     })
     let finishBtn = document.getElementById("finish");
     finishBtn.addEventListener("click", () => {
-
+        console.log("OK")
     })
 }
 
@@ -208,7 +208,8 @@ function addToCart(shoppingCartContent) {
                 count++
                 productName = shoppingCartContent[i].productName
                 description = shoppingCartContent[i].description
-                price = shoppingCartContent[i].price.split(" ")[0];
+                price = shoppingCartContent[i].price.toString();
+
             }
         }
         modalContent += "        <div class=\"card\">\n" +
@@ -224,7 +225,7 @@ function addToCart(shoppingCartContent) {
             "                                <p class=\"card-text prod-desc\">" + description + "</p>\n" +
             "                            </div>\n" +
             "                            <div class=\"card-text\">\n" +
-            `                                <p class=\"lead item-price\"> ${price} USD </p>\n` +
+            `                                <p class=\"lead item-price\"> ${price} USD</p>\n` +
             "                            </div>\n" +
             "                            <div class=\"quantity\">\n" +
             "                                <button class=\"minus-btn\" type=\"button\" name=\"button\">\n" +
@@ -277,6 +278,6 @@ function sessionStorageHandler(){
     sessionStorage.clear();
 }
 
-eventListenerAdder()
 modalWindowHandler()
+eventListenerAdder()
 // sessionStorageHandler()
