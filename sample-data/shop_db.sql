@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS public.products CASCADE ;
+DROP TABLE IF EXISTS public.products CASCADE;
 CREATE TABLE public.products (
                              id serial NOT NULL PRIMARY KEY,
                              prod_name varchar NOT NULL,
@@ -65,12 +65,24 @@ INSERT INTO public.product_categories (name) VALUES ('fun');
 INSERT INTO public.product_categories (name) VALUES ('home');
 INSERT INTO public.product_categories (name) VALUES ('kitchen');
 
-INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Booth trush', 'Clean them from a different angle.', 2, 9, 2);
-INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Feather Knife', 'Chicks love it.', 3, 25, 1);
-INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Self-hammer', 'You are gonna nail the home reno.', 2, 35, 1);
-INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Glass', 'For fashion, not prescription.', 1, 22, 2);
-INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Rocking ladder', 'Swing by the roof', 2, 52, 1);
-INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('SOUPer Bowl', 'Can not really hold liquid.', 3, 12, 2);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Sunglass', 'For sunny days.', 1, 12, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Candle Bulb', 'For candle-lit date nights.', 2, 5, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Bottle Water', 'Definitely a thirst trap.', 3, 3, 2);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Self-watering can', 'Never run out of water.', 2, 20, 2);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Aquarium Hourglass', 'Dont worry about time, but feeding your new pet.', 1, 15, 2);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Table Tennis equipment', 'There is a loophole.', 1, 8, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Couple s mugs', 'For you and your clingy partner.', 3, 30, 2);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Double Champagne Glass', 'Double the fun on New Year s Eve.', 3, 50, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Pocket Ruler', 'To measure every tiny detail.', 2, 6, 2);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Balloon Paint Roller', 'Mix a birthday party with home renovation.', 2, 45, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Spherical dice', 'Test your luck.', 1, 25, 2);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Spork', 'If you can not decide.', 3, 10, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Booth trush', 'Clean them from a different angle.', 2, 9, 2);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Feather Knife', 'Chicks love it.', 3, 25, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Self-hammer', 'You are gonna nail the home reno.', 2, 35, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Glass', 'For fashion, not prescription.', 1, 22, 2);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Rocking ladder', 'Swing by the roof', 2, 52, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('SOUPer Bowl', 'Can not really hold liquid.', 3, 12, 2);
 
 
 
