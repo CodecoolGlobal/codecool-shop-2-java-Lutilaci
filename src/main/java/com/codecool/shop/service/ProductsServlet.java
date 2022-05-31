@@ -36,8 +36,7 @@ public class ProductsServlet extends HttpServlet {
         String json = "";
 
         if(catId != null && suppId != null){
-            List<Product> placeholder = new ArrayList<>();
-            placeholder = productService.getProductsForCategory(Integer.parseInt(catId));
+            List<Product> placeholder = productService.getProductsForCategory(Integer.parseInt(catId));
             List<Product> providedProducts = new ArrayList<>();
             placeholder.forEach(product -> {
                 if(supplierDao.find(Integer.parseInt(suppId)) == product.getSupplier()){
