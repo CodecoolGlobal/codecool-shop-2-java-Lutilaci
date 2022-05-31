@@ -77,12 +77,12 @@ INSERT INTO products (prod_name, description, category_id, unit_price, supplier_
 INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Balloon Paint Roller', 'Mix a birthday party with home renovation.', 2, 45, 1);
 INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Spherical dice', 'Test your luck.', 1, 25, 2);
 INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Spork', 'If you can not decide.', 3, 10, 1);
-INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Booth trush', 'Clean them from a different angle.', 2, 9, 2);
-INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Feather Knife', 'Chicks love it.', 3, 25, 1);
-INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Self-hammer', 'You are gonna nail the home reno.', 2, 35, 1);
-INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Glass', 'For fashion, not prescription.', 1, 22, 2);
-INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Rocking ladder', 'Swing by the roof', 2, 52, 1);
 INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('SOUPer Bowl', 'Can not really hold liquid.', 3, 12, 2);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Rocking ladder', 'Swing by the roof', 2, 52, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Glass', 'For fashion, not prescription.', 1, 22, 2);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Self-hammer', 'You are gonna nail the home reno.', 2, 35, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Feather Knife', 'Chicks love it.', 3, 25, 1);
+INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Booth trush', 'Clean them from a different angle.', 2, 9, 2);
 
 
 
