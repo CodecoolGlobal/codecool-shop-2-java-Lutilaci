@@ -1,27 +1,28 @@
-DROP TABLE IF EXISTS public.products;
+DROP TABLE IF EXISTS public.products CASCADE ;
 CREATE TABLE public.products (
                              id serial NOT NULL PRIMARY KEY,
                              prod_name varchar NOT NULL,
                              description varchar,
                              category_id int NOT NULL,
                              unit_price int NOT NULL,
+                             currency varchar DEFAULT 'USD',
                              supplier_id int NOT NULL
 
 );
 
-DROP TABLE IF EXISTS public.product_categories;
+DROP TABLE IF EXISTS public.product_categories CASCADE;
 CREATE TABLE public.product_categories (
                                   id serial NOT NULL PRIMARY KEY,
                                   name text NOT NULL
 );
 
-DROP TABLE IF EXISTS public.suppliers;
+DROP TABLE IF EXISTS public.suppliers CASCADE;
 CREATE TABLE public.suppliers (
                                id serial NOT NULL PRIMARY KEY,
                                name text NOT NULL
 );
 
-DROP TABLE IF EXISTS public.orders;
+DROP TABLE IF EXISTS public.orders CASCADE;
 CREATE TABLE public.orders (
                               id serial NOT NULL PRIMARY KEY,
                               user_id int NOT NULL,
@@ -29,7 +30,7 @@ CREATE TABLE public.orders (
                               timestamp timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
-DROP TABLE IF EXISTS public.users;
+DROP TABLE IF EXISTS public.users CASCADE;
 CREATE TABLE public.users (
                             id serial NOT NULL PRIMARY KEY ,
                             name text NOT NULL,
@@ -38,7 +39,7 @@ CREATE TABLE public.users (
                             password text NOT NULL
 );
 
-DROP TABLE IF EXISTS public.order_items;
+DROP TABLE IF EXISTS public.order_items CASCADE;
 CREATE TABLE public.order_items (
                                 product_id    int NOT NULL,
                                 amount        int NOT NULL,
@@ -63,6 +64,13 @@ INSERT INTO public.suppliers (name) VALUES ('LooneyTools');
 INSERT INTO public.product_categories (name) VALUES ('fun');
 INSERT INTO public.product_categories (name) VALUES ('home');
 INSERT INTO public.product_categories (name) VALUES ('kitchen');
+
+INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Booth trush', 'Clean them from a different angle.', 2, 9, 2);
+INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Feather Knife', 'Chicks love it.', 3, 25, 1);
+INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Self-hammer', 'You are gonna nail the home reno.', 2, 35, 1);
+INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Glass', 'For fashion, not prescription.', 1, 22, 2);
+INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Rocking ladder', 'Swing by the roof', 2, 52, 1);
+INSERT INTO public.products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('SOUPer Bowl', 'Can not really hold liquid.', 3, 12, 2);
 
 
 
