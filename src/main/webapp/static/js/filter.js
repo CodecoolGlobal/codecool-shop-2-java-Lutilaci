@@ -16,18 +16,18 @@ function supplierFiltering(){
                 removeSupplierHighlight()
                 changeSupplierButtonText("Supplier");
                 if(cat_id === 0){
-                    url = "/api/get/products"
+                    url = "/api/products"
                 } else {
-                    url = `/api/get/products?catid=${cat_id}`
+                    url = `/api/products?catid=${cat_id}`
                 }
             } else {
                 removeSupplierHighlight()
                 changeSupplierButtonText(supplier.innerText)
                 highlight(supplier)
                 if(cat_id === 0){
-                    url = `/api/get/products?suppid=${supplierId}`
+                    url = `/api/products?suppid=${supplierId}`
                 } else {
-                    url = `/api/get/products?suppid=${supplierId}&catid=${cat_id}`
+                    url = `/api/products?suppid=${supplierId}&catid=${cat_id}`
                 }
             }
             await eventHandler(url)
@@ -49,18 +49,18 @@ function categoryFiltering(){
                 changeCategoryButtonText("Category")
                 removeCategoryHighlight()
                 if(supp_id === 0){
-                    url = "/api/get/products"
+                    url = "/api/products"
                 } else {
-                    url = `/api/get/products?suppid=${supp_id}`
+                    url = `/api/products?suppid=${supp_id}`
                 }
             } else {
                 removeCategoryHighlight()
                 changeCategoryButtonText(category.innerText)
                 highlight(category)
                 if(supp_id === 0){
-                    url = `/api/get/products?catid=${id}`
+                    url = `/api/products?catid=${id}`
                 } else {
-                    url = `/api/get/products?suppid=${supp_id}&catid=${id}`
+                    url = `/api/products?suppid=${supp_id}&catid=${id}`
                 }
             }
             await eventHandler(url);

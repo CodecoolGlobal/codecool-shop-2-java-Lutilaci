@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "allProduct",urlPatterns = {"/api/get/products"})
+@WebServlet(name = "allProduct", urlPatterns = {"/api/products"})
 public class ProductsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
