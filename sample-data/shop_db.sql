@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS public.products;
 CREATE TABLE public.products (
                              id serial NOT NULL PRIMARY KEY,
-                             name text NOT NULL,
+                             prod_name varchar NOT NULL,
+                             description varchar,
                              category_id int NOT NULL,
                              unit_price int NOT NULL,
                              supplier_id int NOT NULL
@@ -55,4 +56,14 @@ ALTER TABLE ONLY public.orders
 ALTER TABLE ONLY public.order_items
     ADD CONSTRAINT fk_products_id FOREIGN KEY (product_id) REFERENCES public.products(id),
     ADD CONSTRAINT fk_order_id FOREIGN KEY (order_id) REFERENCES public.orders(id);
+
+INSERT INTO public.suppliers (name) VALUES ('Cycleops');
+INSERT INTO public.suppliers (name) VALUES ('LooneyTools');
+
+INSERT INTO public.product_categories (name) VALUES ('fun');
+INSERT INTO public.product_categories (name) VALUES ('home');
+INSERT INTO public.product_categories (name) VALUES ('kitchen');
+
+
+
 
