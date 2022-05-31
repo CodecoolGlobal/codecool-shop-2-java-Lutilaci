@@ -213,37 +213,7 @@ function addToCart(shoppingCartContent) {
 
             }
         }
-        modalContent += "        <div class=\"card\">\n" +
-            "                        <div class=\"item\">\n" +
-            "                            <div class=\"buttons\">\n" +
-            "                                <span class=\"delete-btn\"></span>\n" +
-            "                            </div>\n" +
-            "                            <div class=\"image\">\n" +
-            `                                <img class=\"product-height\" src=/static/img/product_${id}.jpg width=\"auto\" height=\"auto\"/>\n` +
-            "                            </div>\n" +
-            "                            <div class=\"description\">\n" +
-            "                                <h4 class=\"card-title\">" + productName + "</h4>\n" +
-            "                                <p class=\"card-text prod-desc\">" + description + "</p>\n" +
-            "                            </div>\n" +
-            "                            <div class=\"card-text\">\n" +
-            `                                <p class=\"lead item-price\"> ${price} USD</p>\n` +
-            "                            </div>\n" +
-            "                            <div class=\"quantity\">\n" +
-            "                                <button class=\"minus-btn\" type=\"button\" name=\"button\">\n" +
-            "                                    -\n" +
-            "                                </button>\n" +
-            `                                <input type=\"text\" name=\"name\" class=\"changeQuantity\" value=\"${count}\">\n` +
-            "                                <button class=\"plus-btn\" type=\"button\" name=\"button\">\n" +
-            "                                    +\n" +
-            "                                </button>\n" +
-            "                            </div>\n" +
-            `                            <div class=\"total-price\"> ${price*count} USD </div>\n` +
-            "                        </div>\n" +
-            "                    </div>\n" +
-            "                    <br>\n" +
-            "                </div>\n";
-
-        //Create card here with
+        modalContent += shoppingCartCardBuilder(id, productName, description, price, count);
 
     })
     modalContent += "<div class=\"modal-footer\">\n" +
