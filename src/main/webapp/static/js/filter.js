@@ -4,7 +4,7 @@ import {eventListenerAdder} from "./main.js";
 
 let supp_id = 0
 let cat_id = 0
-function supplierFiltering(){
+function supplierFilteringEventListener(){
     const suppliers = document.querySelectorAll(".supplier");
     suppliers.forEach((supplier) => {
         supplier.addEventListener("click", async () => {
@@ -36,7 +36,7 @@ function supplierFiltering(){
     })
 }
 
-function categoryFiltering(){
+function categoryFilteringEventListener(){
     const categories = document.querySelectorAll(".category");
     categories.forEach((category) => {
         category.addEventListener("click", async () =>{
@@ -104,5 +104,5 @@ function highlight(element){
     element.classList.add("highlight")
 }
 
-supplierFiltering()
-categoryFiltering()
+supplierFilteringEventListener()
+categoryFilteringEventListener()
