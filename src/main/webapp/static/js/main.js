@@ -1,3 +1,4 @@
+import {shoppingCartCardBuilder} from "./cardFactory.js";
 let shoppingCartContent = [];
 
 function modalWindowHandler() {
