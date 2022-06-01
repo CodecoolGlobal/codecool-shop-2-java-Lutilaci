@@ -191,28 +191,13 @@ function inCartEventListenerPlacer(){
 
 
 function addToCart(shoppingCartContent) {
-    let setOfIds = []
-    shoppingCartContent.forEach(sct => {
-        if(!setOfIds.includes(sct.id)){
-            setOfIds.push(sct.id)
-        }
-    })
     let modalContent = "";
-    setOfIds.forEach(id => {
-        let count = 0
-        let productName = "";
-        let description = ""
-        let price;
-
-        for(let i = 0; i < shoppingCartContent.length; i++){
-            if(shoppingCartContent[i].id == id){
-                count++
-                productName = shoppingCartContent[i].productName
-                description = shoppingCartContent[i].description
-                price = shoppingCartContent[i].price.toString();
-
-            }
-        }
+    shoppingCartContent.forEach(content => {
+        let id = content.id
+        let productName = content.productName
+        let description = content.description
+        let price = content.price
+        let count = content.quantity
         modalContent += shoppingCartCardBuilder(id, productName, description, price, count);
 
     })
