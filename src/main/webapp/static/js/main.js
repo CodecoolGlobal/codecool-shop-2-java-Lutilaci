@@ -227,15 +227,23 @@ function removeProductFromSessionStorage(productId){
     }
 }
 
-// Get saved data from sessionStorage
-    let data = sessionStorage.getItem('key');
-
-// Remove saved data from sessionStorage
-
-    sessionStorage.removeItem('key');
-// Remove all saved data from sessionStorage
-
-    sessionStorage.clear();
+async function loadCart(){
+    let productsFromCart = await sessionStorageToJson();
+    for(let i = 0; i < productsFromCart.length; i++){
+        let strId = productsFromCart[i].id
+        console.log(typeof strId)
+        let quantity = sessionStorage.getItem(strId)
+        let item = {
+            "id": (productsFromCart[i].id).toString(),
+            "productName": productsFromCart[i].name,
+            "quantity": quantity,
+            "description": productsFromCart[i].description,
+            "price": productsFromCart[i].defaultPrice,
+            "picture": document.querySelector(".product-height").src
+        }
+        shoppingCartContent.push(item);
+    }
+    document.querySelector(".modal-body").innerHTML = addToCart(shoppingCartContent)
 }
 
 modalWindowHandler()
