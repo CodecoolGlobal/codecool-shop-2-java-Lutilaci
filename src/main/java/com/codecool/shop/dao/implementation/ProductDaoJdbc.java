@@ -48,7 +48,9 @@ public class ProductDaoJdbc implements ProductDao {
             ResultSet rs = st.executeQuery();
             List <Product> products = new ArrayList<>();
             while (rs.next()) {
-                Product product = new Product(rs.getString(1), rs.getBigDecimal(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                ProductCategory productCategory = getCategoryById(rs.getInt(5));
+                Supplier supplier = getSupplierById(rs.getInt(6));
+                        Product product = new Product(rs.getString(1), rs.getBigDecimal(2), rs.getString(3), rs.getString(4), productCategory, supplier);
                 products.add(product);
             }
             return products;
@@ -57,14 +59,33 @@ public class ProductDaoJdbc implements ProductDao {
         }
     }
 
-    public getCategoryById(int id){
+    public ProductCategory getCategoryById(int id){
         try (Connection conn = dataSource.getConnection()) {
             String sql = "SELECT name, description FROM product_categories WHERE id = (?)";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
-            rs.next();
-                    return new ProductCategory(rs.getString(1), rs.getString(2));
+            ProductCategory productCategory = null;
+            if (rs.next()) {
+                productCategory = new ProductCategory(rs.getString(1), rs.getString(2));
+            }
+            return productCategory;
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Supplier getSupplierById(int id){
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT name FROM product_categories WHERE id = (?)";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            Supplier supplier = null;
+            if (rs.next()) {
+                supplier = new Supplier(rs.getString(1));
+            }
+            return supplier;
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
