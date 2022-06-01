@@ -218,9 +218,13 @@ function addProductToSessionStorage(productId){
     }
 }
 
-function sessionStorageHandler(){
-    // Save data to sessionStorage
-    sessionStorage.setItem('key', 'value');
+function removeProductFromSessionStorage(productId){
+    let data = sessionStorage.getItem(productId);
+    if(data === "1"){
+        sessionStorage.removeItem(productId)
+    } else {
+        sessionStorage.setItem(productId, (parseInt(data)-1).toString());
+    }
 
 // Get saved data from sessionStorage
     let data = sessionStorage.getItem('key');
