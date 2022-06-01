@@ -1,4 +1,5 @@
 import {shoppingCartCardBuilder} from "./cardFactory.js";
+import {sessionStorageToJson} from "./json.js";
 let shoppingCartContent = [];
 
 function modalWindowHandler() {
