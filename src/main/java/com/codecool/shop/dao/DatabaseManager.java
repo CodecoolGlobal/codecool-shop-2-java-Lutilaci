@@ -4,7 +4,9 @@ import javax.sql.DataSource;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
+import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
 import com.codecool.shop.dao.implementation.ProductDaoJdbc;
+import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
 import org.postgresql.ds.PGSimpleDataSource;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,6 +15,30 @@ import java.util.Properties;
 
 public class DatabaseManager {
 
+    public ProductDao getProductDao() {
+        return productDao;
+    }
+
+    public void setProductDao(ProductDao productDao) {
+        this.productDao = productDao;
+    }
+
+    public ProductCategoryDao getProdCatDao() {
+        return prodCatDao;
+    }
+
+    public void setProdCatDao(ProductCategoryDao prodCatDao) {
+        this.prodCatDao = prodCatDao;
+    }
+
+    public SupplierDao getSupplierDao() {
+        return supplierDao;
+    }
+
+    public void setSupplierDao(SupplierDao supplierDao) {
+        this.supplierDao = supplierDao;
+    }
+
     private ProductDao productDao;
     private ProductCategoryDao prodCatDao;
     private SupplierDao supplierDao;
@@ -20,6 +46,8 @@ public class DatabaseManager {
     public void setup() throws SQLException, IOException {
         DataSource dataSource = connect();
         productDao = new ProductDaoJdbc(dataSource);
+        prodCatDao = new ProductCategoryDaoJdbc(dataSource);
+        supplierDao = new SupplierDaoJdbc(dataSource);
 
     }
 
