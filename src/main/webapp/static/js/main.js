@@ -56,7 +56,6 @@ export function addToCartEventListener(){
                 list.push(addCard[i].dataset.id)
             }
             shoppingCartContent.push(item);
-            console.log(shoppingCartContent)
             addProductToSessionStorage(addCard[i].dataset.id);
             let cartNumber = 0;
             let keySet = Object.keys(sessionStorage);
