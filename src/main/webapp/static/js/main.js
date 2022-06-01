@@ -246,6 +246,6 @@ async function loadCart(){
     document.querySelector(".modal-body").innerHTML = addToCart(shoppingCartContent)
 }
 
+loadCart().then(r => console.log("Cart is loaded!"))
 modalWindowHandler()
-eventListenerAdder()
-// sessionStorageHandler()
+addToCartEventListener()
