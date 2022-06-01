@@ -26,7 +26,7 @@ function modalWindowHandler() {
     }
 }
 
-export function eventListenerAdder(){
+export function addToCartEventListener(){
     let addCard = document.querySelectorAll("#addToCart");
     let cartItemNumber = document.querySelector(".cart-item-number");
     cartItemNumber.innerText = "0";
