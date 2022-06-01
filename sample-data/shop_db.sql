@@ -13,7 +13,8 @@ CREATE TABLE public.products (
 DROP TABLE IF EXISTS public.product_categories CASCADE;
 CREATE TABLE public.product_categories (
                                   id serial NOT NULL PRIMARY KEY,
-                                  name text NOT NULL
+                                  name text NOT NULL,
+                                  description text
 );
 
 DROP TABLE IF EXISTS public.suppliers CASCADE;
@@ -61,9 +62,9 @@ ALTER TABLE ONLY public.order_items
 INSERT INTO public.suppliers (name) VALUES ('Cycleops');
 INSERT INTO public.suppliers (name) VALUES ('LooneyTools');
 
-INSERT INTO public.product_categories (name) VALUES ('fun');
-INSERT INTO public.product_categories (name) VALUES ('home');
-INSERT INTO public.product_categories (name) VALUES ('kitchen');
+INSERT INTO public.product_categories (name, description) VALUES ('fun', 'Unnecessary fun items for boring days.');
+INSERT INTO public.product_categories (name, description) VALUES ('home', 'These utilities might come in handy one day.');
+INSERT INTO public.product_categories (name, description) VALUES ('kitchen', 'Everyone needs some kitchen supplies.');
 
 INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Sunglass', 'For sunny days.', 1, 12, 1);
 INSERT INTO products (prod_name, description, category_id, unit_price, supplier_id) VALUES ('Candle Bulb', 'For candle-lit date nights.', 2, 5, 1);
