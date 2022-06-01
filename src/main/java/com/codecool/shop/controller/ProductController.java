@@ -34,7 +34,8 @@ public class ProductController extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ProductDao productDataStore = ProductDaoMem.getInstance();
+//        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductDao productDataStore = dbManager.getProductDao();
 //        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = dbManager.getProdCatDao();
 //        SupplierDao supplierDao = SupplierDaoMem.getInstance();

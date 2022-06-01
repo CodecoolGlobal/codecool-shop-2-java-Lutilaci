@@ -43,7 +43,7 @@ public class ProductDaoJdbc implements ProductDao {
     @Override
     public List<Product> getAll() {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT * FROM products";
+            String sql = "SELECT prod_name, unit_price, currency, description, category_id, supplier_id, id FROM products";
             PreparedStatement st = conn.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             List <Product> products = new ArrayList<>();
@@ -51,6 +51,7 @@ public class ProductDaoJdbc implements ProductDao {
                 ProductCategory productCategory = getCategoryById(rs.getInt(5));
                 Supplier supplier = getSupplierById(rs.getInt(6));
                         Product product = new Product(rs.getString(1), rs.getBigDecimal(2), rs.getString(3), rs.getString(4), productCategory, supplier);
+                        product.setId(rs.getInt(7));
                 products.add(product);
             }
             return products;
