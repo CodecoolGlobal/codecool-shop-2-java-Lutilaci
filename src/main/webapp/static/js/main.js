@@ -139,10 +139,6 @@ function checkOutAddListener(){
 </div>
 </div>`
     })
-    let finishBtn = document.getElementById("finish");
-    finishBtn.addEventListener("click", () => {
-        console.log("OK")
-    })
 }
 
 function inCartEventListenerPlacer(){
