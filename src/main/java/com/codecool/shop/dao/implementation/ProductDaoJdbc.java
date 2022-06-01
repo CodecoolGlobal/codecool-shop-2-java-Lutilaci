@@ -77,7 +77,7 @@ public class ProductDaoJdbc implements ProductDao {
 
     public Supplier getSupplierById(int id){
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT name FROM product_categories WHERE id = (?)";
+            String sql = "SELECT name FROM suppliers WHERE id = (?)";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
