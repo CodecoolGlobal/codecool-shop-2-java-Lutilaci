@@ -52,11 +52,11 @@ export function shoppingCartCardBuilder(id, productName, description, price, cou
         `                                <p class=\"lead item-price\"> ${price} USD</p>\n` +
         "                            </div>\n" +
         "                            <div class=\"quantity\">\n" +
-        "                                <button class=\"minus-btn\" type=\"button\" name=\"button\">\n" +
+        `                                <button class=\"minus-btn\" type=\"button\" name=\"button\" data-id=\"${id}\">\n` +
         "                                    -\n" +
         "                                </button>\n" +
         `                                <input type=\"text\" name=\"name\" class=\"changeQuantity\" value=\"${count}\">\n` +
-        "                                <button class=\"plus-btn\" type=\"button\" name=\"button\">\n" +
+        `                                <button class=\"plus-btn\" type=\"button\" name=\"button\" data-id=\"${id}\">\n` +
         "                                    +\n" +
         "                                </button>\n" +
         "                            </div>\n" +
