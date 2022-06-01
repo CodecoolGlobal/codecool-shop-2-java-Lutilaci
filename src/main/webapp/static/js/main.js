@@ -225,6 +225,7 @@ function removeProductFromSessionStorage(productId){
     } else {
         sessionStorage.setItem(productId, (parseInt(data)-1).toString());
     }
+}
 
 // Get saved data from sessionStorage
     let data = sessionStorage.getItem('key');
