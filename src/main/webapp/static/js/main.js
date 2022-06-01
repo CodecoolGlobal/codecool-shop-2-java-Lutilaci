@@ -199,7 +199,6 @@ function addToCart(shoppingCartContent) {
         let price = content.price
         let count = content.quantity
         modalContent += shoppingCartCardBuilder(id, productName, description, price, count);
-
     })
     modalContent += "<div class=\"modal-footer\">\n" +
         `                    <div id=\"total-total-price\"> 0 </div>\n` +
