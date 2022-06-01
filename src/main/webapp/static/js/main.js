@@ -163,6 +163,8 @@ function inCartEventListenerPlacer(){
                 totalPRice[i].innerText = totalpr.toString() + " USD";
                 TP -= parseInt(itemPrice[i].innerText);
                 totalTotalPrice.innerText = "$" + TP;
+                let prodId = plusButton[i].dataset.id;
+                removeProductFromSessionStorage(prodId.toString());
             }
         })
     }
@@ -176,6 +178,8 @@ function inCartEventListenerPlacer(){
             totalPRice[i].innerText = totalpr.toString() + " USD";
             TP += parseInt(itemPrice[i].innerText);
             totalTotalPrice.innerText = "$" + TP;
+            let prodId = plusButton[i].dataset.id;
+            addProductToSessionStorage(prodId.toString());
         })
     }
 
