@@ -31,11 +31,11 @@ public class Initializer implements ServletContextListener {
         supplierDataStore.add(LooneyTools);
 
         //setting up a new product category
-        ProductCategory fun = new ProductCategory("Fun items", "fun", "Unnecessary fun items for boring days.");
+        ProductCategory fun = new ProductCategory("fun", "Unnecessary fun items for boring days.");
         productCategoryDataStore.add(fun);
-        ProductCategory home = new ProductCategory("Home accessories", "home", "These utilities might come in handy one day.");
+        ProductCategory home = new ProductCategory("home", "These utilities might come in handy one day.");
         productCategoryDataStore.add(home);
-        ProductCategory kitchen = new ProductCategory("Kitchen supplies", "kitchen", "Everyone needs some kitchen supplies.");
+        ProductCategory kitchen = new ProductCategory( "kitchen", "Everyone needs some kitchen supplies.");
         productCategoryDataStore.add(kitchen);
 
         //setting up products and printing it
