@@ -1,11 +1,10 @@
 let registrationButton = document.getElementById("registration");
-let headerTxt = document.querySelector(".headerText");
 let modal = document.getElementById("myModal");
 let modalBody = document.querySelector(".modal-body");
 
 export function registrationAddEventListener() {
-    let headerText = "Registration";
     registrationButton.addEventListener("click", () => {
+        document.querySelector(".headerText").innerHTML = "Registration";
 
         modal.style.display = "block";
         modalBody.innerHTML = `<form action="/action_page.php">
