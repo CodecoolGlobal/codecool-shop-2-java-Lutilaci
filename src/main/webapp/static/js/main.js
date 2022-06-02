@@ -4,7 +4,6 @@ let btn = document.getElementById("shoppingCart");
 let modalBody = document.querySelector(".modal-body");
 let addCard = document.querySelectorAll("#addToCart");
 let cartItemNumber = document.querySelector(".cart-item-number");
-let registrationButton = document.getElementById("registration");
 let checkOut = document.getElementById("checkOut");
 let finishBtn = document.getElementById("finish");
 let totalTotalPrice = document.getElementById("total-total-price");
@@ -14,7 +13,6 @@ let minusButton = document.querySelectorAll(".minus-btn");
 let plusButton = document.querySelectorAll(".plus-btn");
 let totalPRice = document.querySelectorAll(".total-price");
 let span = document.getElementsByClassName("close")[0];
-let headerTxt = document.querySelector(".headerText");
 
 
 function modalWindowHandler() {
@@ -141,11 +139,12 @@ function checkOutAddListener() {
     </div>
 </div>
 </div>`
+        finishButtonEventListenerAdder();
     })
 
-
-    finishBtn.addEventListener("click", () => {
-        modalbody.innerHTML = `<div className="container">
+    function finishButtonEventListenerAdder() {
+        finishBtn.addEventListener("click", () => {
+            modalbody.innerHTML = `<div className="container">
             <h1>
                 Order confirmation
             </h1>
@@ -229,7 +228,8 @@ function checkOutAddListener() {
                 </div>
             </div>
         </div>`
-    })
+        })
+    }
 }
 
 function inCartEventListenerPlacer() {
@@ -361,6 +361,7 @@ function sessionStorageHandler() {
 
     sessionStorage.clear();
 }
+
 modalWindowHandler()
 eventListenerAdder()
 registrationAddEventListener();
