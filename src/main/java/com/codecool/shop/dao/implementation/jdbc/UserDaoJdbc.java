@@ -3,6 +3,8 @@ package com.codecool.shop.dao.implementation.jdbc;
 import com.codecool.shop.dao.UserDao;
 import com.codecool.shop.model.User;
 
+import javax.sql.DataSource;
+import java.sql.*;
 import java.util.List;
 
 public class UserDaoJdbc implements UserDao {
