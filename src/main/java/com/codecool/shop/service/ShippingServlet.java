@@ -1,7 +1,7 @@
 package com.codecool.shop.service;
 
 import com.codecool.shop.config.TemplateEngineUtil;
-import com.codecool.shop.model.OrderDetails;
+import com.codecool.shop.model.Address;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet (name="OrderDetails", urlPatterns = {"/api/post/order-details"})
 public class ShippingServlet extends HttpServlet {
@@ -28,11 +26,11 @@ public class ShippingServlet extends HttpServlet {
         String city = req.getParameter("city");
         String zip = req.getParameter("zip");
 
-        OrderDetails orderDetails = new OrderDetails(firstName, lastName, email, address, city, zip);
+        Address orderDetails = new Address(firstName, lastName, address, city, zip);
+
 
         System.out.println(orderDetails.firstName);
         System.out.println(orderDetails.lastName);
-        System.out.println(orderDetails.email);
         System.out.println(orderDetails.street);
         System.out.println(orderDetails.city);
         System.out.println(orderDetails.zipCode);
