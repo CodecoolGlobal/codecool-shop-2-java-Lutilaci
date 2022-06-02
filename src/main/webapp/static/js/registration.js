@@ -3,7 +3,7 @@ let headerTxt = document.querySelector(".headerText");
 let modal = document.getElementById("myModal");
 let modalBody = document.querySelector(".modal-body");
 
-function registrationAddEventListener() {
+export function registrationAddEventListener() {
     let headerText = "Registration";
     registrationButton.addEventListener("click", () => {
 
