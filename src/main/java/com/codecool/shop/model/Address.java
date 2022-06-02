@@ -14,7 +14,7 @@ public class Address {
 
     public List<Product> productList;
 
-    public Address(String firstName, String lastName, String email, String street, String city, String zipCode){
+    public Address(String firstName, String lastName, String street, String city, String zipCode){
         this.firstName = firstName;
         this.lastName = lastName;
         this.street = street;
