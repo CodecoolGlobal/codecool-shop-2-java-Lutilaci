@@ -27,6 +27,7 @@ DROP TABLE IF EXISTS public.orders CASCADE;
 CREATE TABLE public.orders (
                               id serial NOT NULL PRIMARY KEY,
                               user_id int NOT NULL,
+                              address_id int NOT NULL,
                               total_price int NOT NULL,
                               timestamp timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
@@ -35,7 +36,6 @@ DROP TABLE IF EXISTS public.users CASCADE;
 CREATE TABLE public.users (
                             id serial NOT NULL PRIMARY KEY ,
                             name text NOT NULL,
-                            address text NOT NULL ,
                             email text NOT NULL ,
                             password text NOT NULL
 );
@@ -48,16 +48,32 @@ CREATE TABLE public.order_items (
                                 subtotal_rice int NOT NULL
 );
 
+DROP TABLE IF EXISTS public.address CASCADE;
+CREATE TABLE public.address(
+                               id serial NOT NULL PRIMARY KEY ,
+                               first_name text NOT NULL,
+                               last_name text NOT NULL,
+                               street varchar NOT NULL ,
+                               city text NOT NULL ,
+                               zipcode varchar NOT NULL,
+                               user_id int NOT NULL
+);
+
 ALTER TABLE ONLY public.products
     ADD CONSTRAINT fk_category_id FOREIGN KEY (category_id) REFERENCES public.product_categories(id),
     ADD CONSTRAINT fk_supplier_id FOREIGN KEY (supplier_id) REFERENCES public.suppliers(id);
 
 ALTER TABLE ONLY public.orders
-    ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES public.users(id);
+    ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES public.users(id),
+    ADD CONSTRAINT fk_address_id FOREIGN KEY (address_id) REFERENCES public.address(id);
+
 
 ALTER TABLE ONLY public.order_items
     ADD CONSTRAINT fk_products_id FOREIGN KEY (product_id) REFERENCES public.products(id),
     ADD CONSTRAINT fk_order_id FOREIGN KEY (order_id) REFERENCES public.orders(id);
+
+ALTER TABLE ONLY public.address
+    ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 INSERT INTO public.suppliers (name) VALUES ('Cycleops');
 INSERT INTO public.suppliers (name) VALUES ('LooneyTools');
