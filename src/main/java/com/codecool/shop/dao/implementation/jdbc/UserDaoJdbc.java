@@ -8,6 +8,12 @@ import java.sql.*;
 import java.util.List;
 
 public class UserDaoJdbc implements UserDao {
+    private DataSource dataSource;
+
+    public UserDaoJdbc(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     @Override
     public void add(User user) {
 
