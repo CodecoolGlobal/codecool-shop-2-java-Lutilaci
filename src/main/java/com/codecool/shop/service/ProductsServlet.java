@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "allProduct",urlPatterns = {"/api/get/products"})
+@WebServlet(name = "allProduct", urlPatterns = {"/api/products"})
 public class ProductsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -30,14 +30,27 @@ public class ProductsServlet extends HttpServlet {
 
         String catId = request.getParameter("catid");
         String suppId = request.getParameter("suppid");
+        String multipleProduct = request.getParameter("products");
 
-        List<Product> products;
+        List<Product> products = new ArrayList<>();
         Gson gson = new Gson();
-        String json = "";
 
-        if(catId != null && suppId != null){
-            List<Product> placeholder = new ArrayList<>();
-            placeholder = productService.getProductsForCategory(Integer.parseInt(catId));
+        String json = "";
+        if(multipleProduct != null){ // FOR CART PRODUCTS ON PAGE LOADING
+            List<String> productIds = List.of(multipleProduct.split(","));
+            List<Product> placeholder = productService.getAllProducts();
+            List<Product> finalProducts = products;
+            for(int i = 0; i < productIds.size(); i++){
+                int id = Integer.parseInt(productIds.get(i));
+                placeholder.forEach(product -> {
+                    if(product.getId() == id){
+                        finalProducts.add(product);
+                    }
+                });
+            }
+            json += gson.toJson(finalProducts);
+        } else if (catId != null && suppId != null){ // FOR FILTERING
+            List<Product> placeholder = productService.getProductsForCategory(Integer.parseInt(catId));
             List<Product> providedProducts = new ArrayList<>();
             placeholder.forEach(product -> {
                 if(supplierDao.find(Integer.parseInt(suppId)) == product.getSupplier()){

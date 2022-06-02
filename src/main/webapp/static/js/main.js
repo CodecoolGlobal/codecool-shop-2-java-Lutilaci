@@ -1,3 +1,5 @@
+import {shoppingCartCardBuilder} from "./cardFactory.js";
+import {sessionStorageToJson} from "./json.js";
 let shoppingCartContent = [];
 
 function modalWindowHandler() {
@@ -24,7 +26,7 @@ function modalWindowHandler() {
     }
 }
 
-export function eventListenerAdder(){
+export function addToCartEventListener(){
     let addCard = document.querySelectorAll("#addToCart");
     let cartItemNumber = document.querySelector(".cart-item-number");
     cartItemNumber.innerText = "0";
@@ -54,7 +56,6 @@ export function eventListenerAdder(){
                 list.push(addCard[i].dataset.id)
             }
             shoppingCartContent.push(item);
-            console.log(shoppingCartContent)
             addProductToSessionStorage(addCard[i].dataset.id);
             let cartNumber = 0;
             let keySet = Object.keys(sessionStorage);
@@ -138,10 +139,6 @@ function checkOutAddListener(){
 </div>
 </div>`
     })
-    let finishBtn = document.getElementById("finish");
-    finishBtn.addEventListener("click", () => {
-        console.log("OK")
-    })
 }
 
 function inCartEventListenerPlacer(){
@@ -166,6 +163,8 @@ function inCartEventListenerPlacer(){
                 totalPRice[i].innerText = totalpr.toString() + " USD";
                 TP -= parseInt(itemPrice[i].innerText);
                 totalTotalPrice.innerText = "$" + TP;
+                let prodId = plusButton[i].dataset.id;
+                removeProductFromSessionStorage(prodId.toString());
             }
         })
     }
@@ -179,6 +178,8 @@ function inCartEventListenerPlacer(){
             totalPRice[i].innerText = totalpr.toString() + " USD";
             TP += parseInt(itemPrice[i].innerText);
             totalTotalPrice.innerText = "$" + TP;
+            let prodId = plusButton[i].dataset.id;
+            addProductToSessionStorage(prodId.toString());
         })
     }
 
@@ -190,60 +191,14 @@ function inCartEventListenerPlacer(){
 
 
 function addToCart(shoppingCartContent) {
-    let setOfIds = []
-    shoppingCartContent.forEach(sct => {
-        if(!setOfIds.includes(sct.id)){
-            setOfIds.push(sct.id)
-        }
-    })
     let modalContent = "";
-    setOfIds.forEach(id => {
-        let count = 0
-        let productName = "";
-        let description = ""
-        let price;
-
-        for(let i = 0; i < shoppingCartContent.length; i++){
-            if(shoppingCartContent[i].id == id){
-                count++
-                productName = shoppingCartContent[i].productName
-                description = shoppingCartContent[i].description
-                price = shoppingCartContent[i].price.toString();
-
-            }
-        }
-        modalContent += "        <div class=\"card\">\n" +
-            "                        <div class=\"item\">\n" +
-            "                            <div class=\"buttons\">\n" +
-            "                                <span class=\"delete-btn\"></span>\n" +
-            "                            </div>\n" +
-            "                            <div class=\"image\">\n" +
-            `                                <img class=\"product-height\" src=/static/img/product_${id}.jpg width=\"auto\" height=\"auto\"/>\n` +
-            "                            </div>\n" +
-            "                            <div class=\"description\">\n" +
-            "                                <h4 class=\"card-title\">" + productName + "</h4>\n" +
-            "                                <p class=\"card-text prod-desc\">" + description + "</p>\n" +
-            "                            </div>\n" +
-            "                            <div class=\"card-text\">\n" +
-            `                                <p class=\"lead item-price\"> ${price} USD</p>\n` +
-            "                            </div>\n" +
-            "                            <div class=\"quantity\">\n" +
-            "                                <button class=\"minus-btn\" type=\"button\" name=\"button\">\n" +
-            "                                    -\n" +
-            "                                </button>\n" +
-            `                                <input type=\"text\" name=\"name\" class=\"changeQuantity\" value=\"${count}\">\n` +
-            "                                <button class=\"plus-btn\" type=\"button\" name=\"button\">\n" +
-            "                                    +\n" +
-            "                                </button>\n" +
-            "                            </div>\n" +
-            `                            <div class=\"total-price\"> ${price*count} USD </div>\n` +
-            "                        </div>\n" +
-            "                    </div>\n" +
-            "                    <br>\n" +
-            "                </div>\n";
-
-        //Create card here with
-
+    shoppingCartContent.forEach(content => {
+        let id = content.id
+        let productName = content.productName
+        let description = content.description
+        let price = content.price
+        let count = content.quantity
+        modalContent += shoppingCartCardBuilder(id, productName, description, price, count);
     })
     modalContent += "<div class=\"modal-footer\">\n" +
         `                    <div id=\"total-total-price\"> 0 </div>\n` +
@@ -263,21 +218,34 @@ function addProductToSessionStorage(productId){
     }
 }
 
-function sessionStorageHandler(){
-    // Save data to sessionStorage
-    sessionStorage.setItem('key', 'value');
-
-// Get saved data from sessionStorage
-    let data = sessionStorage.getItem('key');
-
-// Remove saved data from sessionStorage
-
-    sessionStorage.removeItem('key');
-// Remove all saved data from sessionStorage
-
-    sessionStorage.clear();
+function removeProductFromSessionStorage(productId){
+    let data = sessionStorage.getItem(productId);
+    if(data === "1"){
+        sessionStorage.removeItem(productId)
+    } else {
+        sessionStorage.setItem(productId, (parseInt(data)-1).toString());
+    }
 }
 
+async function loadCart(){
+    let productsFromCart = await sessionStorageToJson();
+    for(let i = 0; i < productsFromCart.length; i++){
+        let strId = productsFromCart[i].id
+        console.log(typeof strId)
+        let quantity = sessionStorage.getItem(strId)
+        let item = {
+            "id": (productsFromCart[i].id).toString(),
+            "productName": productsFromCart[i].name,
+            "quantity": quantity,
+            "description": productsFromCart[i].description,
+            "price": productsFromCart[i].defaultPrice,
+            "picture": document.querySelector(".product-height").src
+        }
+        shoppingCartContent.push(item);
+    }
+    document.querySelector(".modal-body").innerHTML = addToCart(shoppingCartContent)
+}
+
+loadCart().then(r => console.log("Cart is loaded!"))
 modalWindowHandler()
-eventListenerAdder()
-// sessionStorageHandler()
+addToCartEventListener()
