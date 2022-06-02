@@ -1,5 +1,7 @@
+
 import {shoppingCartCardBuilder} from "./cardFactory.js";
 import {sessionStorageToJson} from "./json.js";
+import {registrationAddEventListener} from "./registration.js";
 let shoppingCartContent = [];
 
 function modalWindowHandler() {
@@ -314,6 +316,7 @@ function removeProductFromSessionStorage(productId){
 
 async function loadCart(){
     let productsFromCart = await sessionStorageToJson();
+    console.log(productsFromCart)
     for(let i = 0; i < productsFromCart.length; i++){
         let strId = productsFromCart[i].id
         console.log(typeof strId)
@@ -334,3 +337,4 @@ async function loadCart(){
 loadCart().then(r => console.log("Cart is loaded!"))
 modalWindowHandler()
 addToCartEventListener()
+registrationAddEventListener();

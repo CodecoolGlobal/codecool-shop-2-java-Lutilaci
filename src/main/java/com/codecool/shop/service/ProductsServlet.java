@@ -1,6 +1,7 @@
 package com.codecool.shop.service;
 
 
+import com.codecool.shop.dao.DatabaseManager;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +24,20 @@ import java.util.List;
 public class ProductsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao supplierDao = SupplierDaoMem.getInstance();
+        DatabaseManager dbManager = new DatabaseManager();
+        try{
+            dbManager.setup();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        //TODO : Make it generic
+        ProductDao productDataStore = dbManager.getProductDao();
+        ProductCategoryDao productCategoryDataStore = dbManager.getProdCatDao();
+        SupplierDao supplierDao = dbManager.getSupplierDao();
+//
+//        ProductDao productDataStore = ProductDaoMem.getInstance();
+//        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+//        SupplierDao supplierDao = SupplierDaoMem.getInstance();
 
         ProductService productService = new ProductService(productDataStore,productCategoryDataStore, supplierDao);
 
