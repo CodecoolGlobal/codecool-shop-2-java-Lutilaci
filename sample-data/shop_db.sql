@@ -1,4 +1,11 @@
 DROP TABLE IF EXISTS public.products CASCADE;
+DROP TABLE IF EXISTS public.products;
+DROP TABLE IF EXISTS public.product_categories;
+DROP TABLE IF EXISTS public.suppliers;
+DROP TABLE IF EXISTS public.users;
+DROP TABLE IF EXISTS public.order_items;
+DROP TABLE IF EXISTS public.order_items;
+
 CREATE TABLE public.products (
                              id serial NOT NULL PRIMARY KEY,
                              prod_name varchar NOT NULL,
@@ -11,6 +18,7 @@ CREATE TABLE public.products (
 );
 
 DROP TABLE IF EXISTS public.product_categories CASCADE;
+
 CREATE TABLE public.product_categories (
                                   id serial NOT NULL PRIMARY KEY,
                                   name text NOT NULL,
@@ -18,6 +26,7 @@ CREATE TABLE public.product_categories (
 );
 
 DROP TABLE IF EXISTS public.suppliers CASCADE;
+
 CREATE TABLE public.suppliers (
                                id serial NOT NULL PRIMARY KEY,
                                name text NOT NULL

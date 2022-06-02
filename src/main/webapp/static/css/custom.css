@@ -1,3 +1,8 @@
+input{
+    display: flex;
+    justify-content: ;
+}
+
 .glyphicon {
     margin-right:5px;
 }
