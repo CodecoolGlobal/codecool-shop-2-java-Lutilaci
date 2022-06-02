@@ -16,13 +16,16 @@ public class DatabaseManager {
     private ProductDao productDao;
     private ProductCategoryDao prodCatDao;
     private SupplierDao supplierDao;
+    private UserDao userDao;
+    private AddressDao addressDao;
 
     public void setup() throws SQLException, IOException {
         DataSource dataSource = connect();
         prodCatDao = new ProductCategoryDaoJdbc(dataSource);
         supplierDao = new SupplierDaoJdbc(dataSource);
         productDao = new ProductDaoJdbc(dataSource, prodCatDao, supplierDao);
-
+        userDao = new UserDaoJdbc(dataSource);
+        addressDao = new AddressDaoJdbc(dataSource);
     }
     private DataSource connect() throws SQLException, IOException, FileNotFoundException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
