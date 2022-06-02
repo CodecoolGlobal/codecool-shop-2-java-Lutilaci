@@ -44,4 +44,17 @@ public class UserDaoJdbc implements UserDao {
     public List<User> getAll() {
         return null;
     }
+
+    public int findIdByEmail(String email){
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT id FROM users WHERE email = (?)";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
