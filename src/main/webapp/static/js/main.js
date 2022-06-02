@@ -8,16 +8,17 @@ function modalWindowHandler() {
     let span = document.getElementsByClassName("close")[0];
     let modalBody = document.querySelector(".modal-body");
 
-    btn.addEventListener("click", ()=> {
+    btn.addEventListener("click", () => {
         modal.style.display = "block";
         modalBody.innerHTML = addToCart(shoppingCartContent);
         inCartEventListenerPlacer();
         checkOutAddListener()
     })
 
-    span.onclick = function () {
+    span.addEventListener("click", () => {
         modal.style.display = "none";
-    }
+    })
+
 
     window.onclick = function (event) {
         if (event.target === modal) {
@@ -30,17 +31,11 @@ export function addToCartEventListener(){
     let addCard = document.querySelectorAll("#addToCart");
     let cartItemNumber = document.querySelector(".cart-item-number");
     cartItemNumber.innerText = "0";
-
-
     let list = []
-    // let count = {"id": 0}
-    //
-    // let counter = 0;
-    for(let i = 0; i < addCard.length; i++) {
+
+    for (let i = 0; i < addCard.length; i++) {
         addCard[i].addEventListener("click", () => {
-            console.log("clicked")
             let price = addCard[i].dataset.price.split(" ")[0];
-            console.log(price)
             let item = {
                 "id": addCard[i].dataset.id,
                 "productName": addCard[i].dataset.prodname,
@@ -138,7 +133,97 @@ function checkOutAddListener(){
     </div>
 </div>
 </div>`
+        finishButtonEventListenerAdder();
     })
+
+    function finishButtonEventListenerAdder() {
+        finishBtn.addEventListener("click", () => {
+            modalbody.innerHTML = `<div className="container">
+            <h1>
+                Order confirmation
+            </h1>
+            <div className="row">
+                <div className="col-md-auto">
+                    <label>Shipping info</label>
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td className="data" th:text="${firstName + ' ' + lastName}"></td>
+                        </tr>
+                        <tr>
+                            <td>Street</td>
+                            <td className="data" th:text="${address}"></td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td className="data" th:text="${city}"></td>
+                        </tr>
+                        <tr>
+                            <td>Zip code</td>
+                            <td className="data" th:text="${zip}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div className="col-md-auto">
+                    <label>Payment info</label>
+                    <table>
+                        <tr>
+                            <td>Amount</td>
+                            <td className="data">$ 236.00</td>
+                        </tr>
+                        <tr>
+                            <td>Card</td>
+                            <td className="data">****4567</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td className="data">Successful</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td className="data" th:text="${email}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <h1>Products</h1>
+            <div className="col">
+                <div>
+                    <table className="producttable">
+                        <thead>
+                        <tr className="producttable">
+                            <th scope="col" className="producttable">Product</th>
+                            <th scope="col" className="producttable">Amount</th>
+                            <th scope="col" className="producttable">Unit price</th>
+                            <th scope="col" className="producttable">Total price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr className="producttable">
+                            <td className=" producttable">Bottle Water</td>
+                            <td className=" producttable">2</td>
+                            <td className=" producttable">$ 8.00</td>
+                            <td className=" producttable">$ 16.00</td>
+                        </tr>
+                        <tr className="producttable">
+                            <td className=" producttable">Self-watering can</td>
+                            <td className=" producttable">1</td>
+                            <td className=" producttable">$ 20.00</td>
+                            <td className=" producttable">$ 20.00</td>
+                        </tr>
+                        <tr className="producttable">
+                            <td className=" producttable">Double Champagne Glass</td>
+                            <td className=" producttable">4</td>
+                            <td className=" producttable">$ 50.00</td>
+                            <td className=" producttable">$ 200.00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>`
+        })
+    }
 }
 
 function inCartEventListenerPlacer(){
@@ -154,8 +239,8 @@ function inCartEventListenerPlacer(){
     let TP = 0;
 
     for (let i = 0; i < minusButton.length; i++) {
-            minusButton[i].addEventListener("click", () => {
-                if (changeQuantity[i].value !== "1") {
+        minusButton[i].addEventListener("click", () => {
+            if (changeQuantity[i].value !== "1") {
                 let counter = parseInt(changeQuantity[i].value);
                 counter--;
                 changeQuantity[i].value = counter.toString();
@@ -209,10 +294,10 @@ function addToCart(shoppingCartContent) {
     return modalContent
 }
 
-function addProductToSessionStorage(productId){
+function addProductToSessionStorage(productId) {
     let data = sessionStorage.getItem(productId)
-    if(data != null){
-        sessionStorage.setItem(productId, (parseInt(data)+1).toString());
+    if (data != null) {
+        sessionStorage.setItem(productId, (parseInt(data) + 1).toString());
     } else {
         sessionStorage.setItem(productId, "1");
     }
