@@ -48,12 +48,7 @@ public class ShippingServlet extends HttpServlet {
         context.setVariable("zip", zip);
         context.setVariable("email", email);
 
-
-
         engine.process("checkout/order-summary.html", context, resp.getWriter());
-
-
-        // TODO: create new object and set its fields from request!
     }
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
