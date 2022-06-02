@@ -1,21 +1,35 @@
 let shoppingCartContent = [];
+let modal = document.getElementById("myModal");
+let btn = document.getElementById("shoppingCart");
+let modalBody = document.querySelector(".modal-body");
+let addCard = document.querySelectorAll("#addToCart");
+let cartItemNumber = document.querySelector(".cart-item-number");
+let registrationButton = document.getElementById("registration");
+let checkOut = document.getElementById("checkOut");
+let finishBtn = document.getElementById("finish");
+let totalTotalPrice = document.getElementById("total-total-price");
+let itemPrice = document.querySelectorAll(".item-price");
+let changeQuantity = document.querySelectorAll(".changeQuantity");
+let minusButton = document.querySelectorAll(".minus-btn");
+let plusButton = document.querySelectorAll(".plus-btn");
+let totalPRice = document.querySelectorAll(".total-price");
+let span = document.getElementsByClassName("close")[0];
+let headerTxt = document.querySelector(".headerText");
+
 
 function modalWindowHandler() {
-    let modal = document.getElementById("myModal");
-    let btn = document.getElementById("shoppingCart");
-    let span = document.getElementsByClassName("close")[0];
-    let modalBody = document.querySelector(".modal-body");
 
-    btn.addEventListener("click", ()=> {
+    btn.addEventListener("click", () => {
         modal.style.display = "block";
         modalBody.innerHTML = addToCart(shoppingCartContent);
         inCartEventListenerPlacer();
         checkOutAddListener()
     })
 
-    span.onclick = function () {
+    span.addEventListener("click", () => {
         modal.style.display = "none";
-    }
+    })
+
 
     window.onclick = function (event) {
         if (event.target === modal) {
@@ -24,21 +38,13 @@ function modalWindowHandler() {
     }
 }
 
-export function eventListenerAdder(){
-    let addCard = document.querySelectorAll("#addToCart");
-    let cartItemNumber = document.querySelector(".cart-item-number");
+export function eventListenerAdder() {
     cartItemNumber.innerText = "0";
-
-
     let list = []
-    // let count = {"id": 0}
-    //
-    // let counter = 0;
-    for(let i = 0; i < addCard.length; i++) {
+
+    for (let i = 0; i < addCard.length; i++) {
         addCard[i].addEventListener("click", () => {
-            console.log("clicked")
             let price = addCard[i].dataset.price.split(" ")[0];
-            console.log(price)
             let item = {
                 "id": addCard[i].dataset.id,
                 "productName": addCard[i].dataset.prodname,
@@ -68,10 +74,52 @@ export function eventListenerAdder(){
     }
 }
 
-function checkOutAddListener(){
-    let checkOut = document.getElementById("checkOut");
-    checkOut.addEventListener("click", ()=> {
-        let modalBody = document.querySelector(".modal-body");
+function registrationAddEventListener() {
+    let headerText = "Registration";
+    registrationButton.addEventListener("click", () => {
+
+        modal.style.display = "block";
+        modalBody.innerHTML = `<form action="/action_page.php">
+                                 
+                                  <div class="container">
+                                    <p>Please fill in this form to create an account.</p>
+                                    <hr>
+                                
+                                    <label for="email"><b>Email</b></label><br>
+                                    <input type="text" placeholder="Enter Email" name="email" id="email" required><br>
+                                
+                                    <label for="psw"><b>Password</b></label><br>
+                                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required><br>
+                                
+                                    <label for="psw-repeat"><b>Repeat Password</b></label><br>
+                                    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required><br>
+                                    
+                                    <h3>Address</h3>
+                                    <label for="zip-code"><b>Zip code</b></label><br>
+                                    <input type="number" placeholder="Enter Zip code" name="zip" id="zip" required><br>
+                                    
+                                    <label for="city"><b>City</b></label><br>
+                                    <input type="text" placeholder="Enter you city" name="city" id="city" required><br>
+                                    
+                                    <label for="street"><b>Street and house number</b></label><br>
+                                    <input type="text" placeholder="Enter street and house number" name="street" id="street" required><br>
+                                    <hr>
+                                    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                                
+                                    <button type="submit" class="registerbtn">Register</button>
+                                  </div>
+                                  
+                                  <div class="container signin">
+                                    <p>Already have an account? <a href="#">Sign in</a>.</p>
+                                  </div>
+                                </form>`
+    })
+    headerTxt.innerHTML = headerText;
+
+}
+
+function checkOutAddListener() {
+    checkOut.addEventListener("click", () => {
         modalBody.innerHTML = `<div class="container shipping-details background">
         <form action="/api/post/order-details" method="post">
             <h1>
@@ -138,27 +186,103 @@ function checkOutAddListener(){
 </div>
 </div>`
     })
-    let finishBtn = document.getElementById("finish");
+
+
     finishBtn.addEventListener("click", () => {
-        console.log("OK")
+        modalbody.innerHTML = `<div className="container">
+            <h1>
+                Order confirmation
+            </h1>
+            <div className="row">
+                <div className="col-md-auto">
+                    <label>Shipping info</label>
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td className="data" th:text="${firstName + ' ' + lastName}"></td>
+                        </tr>
+                        <tr>
+                            <td>Street</td>
+                            <td className="data" th:text="${address}"></td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td className="data" th:text="${city}"></td>
+                        </tr>
+                        <tr>
+                            <td>Zip code</td>
+                            <td className="data" th:text="${zip}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div className="col-md-auto">
+                    <label>Payment info</label>
+                    <table>
+                        <tr>
+                            <td>Amount</td>
+                            <td className="data">$ 236.00</td>
+                        </tr>
+                        <tr>
+                            <td>Card</td>
+                            <td className="data">****4567</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td className="data">Successful</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td className="data" th:text="${email}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <h1>Products</h1>
+            <div className="col">
+                <div>
+                    <table className="producttable">
+                        <thead>
+                        <tr className="producttable">
+                            <th scope="col" className="producttable">Product</th>
+                            <th scope="col" className="producttable">Amount</th>
+                            <th scope="col" className="producttable">Unit price</th>
+                            <th scope="col" className="producttable">Total price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr className="producttable">
+                            <td className=" producttable">Bottle Water</td>
+                            <td className=" producttable">2</td>
+                            <td className=" producttable">$ 8.00</td>
+                            <td className=" producttable">$ 16.00</td>
+                        </tr>
+                        <tr className="producttable">
+                            <td className=" producttable">Self-watering can</td>
+                            <td className=" producttable">1</td>
+                            <td className=" producttable">$ 20.00</td>
+                            <td className=" producttable">$ 20.00</td>
+                        </tr>
+                        <tr className="producttable">
+                            <td className=" producttable">Double Champagne Glass</td>
+                            <td className=" producttable">4</td>
+                            <td className=" producttable">$ 50.00</td>
+                            <td className=" producttable">$ 200.00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>`
     })
 }
 
-function inCartEventListenerPlacer(){
-
-    let totalTotalPrice = document.getElementById("total-total-price");
-    let itemPrice = document.querySelectorAll(".item-price");
-    let changeQuantity = document.querySelectorAll(".changeQuantity");
-    let minusButton = document.querySelectorAll(".minus-btn");
-    let plusButton = document.querySelectorAll(".plus-btn");
-    let totalPRice = document.querySelectorAll(".total-price");
-    let cartItemNumber = document.querySelector(".cart-item-number");
+function inCartEventListenerPlacer() {
     cartItemNumber.innerText = "0";
     let TP = 0;
 
     for (let i = 0; i < minusButton.length; i++) {
-            minusButton[i].addEventListener("click", () => {
-                if (changeQuantity[i].value !== "1") {
+        minusButton[i].addEventListener("click", () => {
+            if (changeQuantity[i].value !== "1") {
                 let counter = parseInt(changeQuantity[i].value);
                 counter--;
                 changeQuantity[i].value = counter.toString();
@@ -192,7 +316,7 @@ function inCartEventListenerPlacer(){
 function addToCart(shoppingCartContent) {
     let setOfIds = []
     shoppingCartContent.forEach(sct => {
-        if(!setOfIds.includes(sct.id)){
+        if (!setOfIds.includes(sct.id)) {
             setOfIds.push(sct.id)
         }
     })
@@ -203,8 +327,8 @@ function addToCart(shoppingCartContent) {
         let description = ""
         let price;
 
-        for(let i = 0; i < shoppingCartContent.length; i++){
-            if(shoppingCartContent[i].id == id){
+        for (let i = 0; i < shoppingCartContent.length; i++) {
+            if (shoppingCartContent[i].id == id) {
                 count++
                 productName = shoppingCartContent[i].productName
                 description = shoppingCartContent[i].description
@@ -212,7 +336,11 @@ function addToCart(shoppingCartContent) {
 
             }
         }
-        modalContent += "        <div class=\"card\">\n" +
+        modalContent += "<div class=\"modal-header\">\n" +
+            "                <h3>Shopping Cart</h3>\n" +
+            "                <span class=\"close\">&times;</span>\n" +
+            "            </div>      " +
+            "                <div class=\"card\">\n" +
             "                        <div class=\"item\">\n" +
             "                            <div class=\"buttons\">\n" +
             "                                <span class=\"delete-btn\"></span>\n" +
@@ -236,7 +364,7 @@ function addToCart(shoppingCartContent) {
             "                                    +\n" +
             "                                </button>\n" +
             "                            </div>\n" +
-            `                            <div class=\"total-price\"> ${price*count} USD </div>\n` +
+            `                            <div class=\"total-price\"> ${price * count} USD </div>\n` +
             "                        </div>\n" +
             "                    </div>\n" +
             "                    <br>\n" +
@@ -254,16 +382,16 @@ function addToCart(shoppingCartContent) {
     return modalContent
 }
 
-function addProductToSessionStorage(productId){
+function addProductToSessionStorage(productId) {
     let data = sessionStorage.getItem(productId)
-    if(data != null){
-        sessionStorage.setItem(productId, (parseInt(data)+1).toString());
+    if (data != null) {
+        sessionStorage.setItem(productId, (parseInt(data) + 1).toString());
     } else {
         sessionStorage.setItem(productId, "1");
     }
 }
 
-function sessionStorageHandler(){
+function sessionStorageHandler() {
     // Save data to sessionStorage
     sessionStorage.setItem('key', 'value');
 
@@ -277,7 +405,8 @@ function sessionStorageHandler(){
 
     sessionStorage.clear();
 }
-
 modalWindowHandler()
 eventListenerAdder()
+registrationAddEventListener();
+
 // sessionStorageHandler()
