@@ -3,6 +3,7 @@ package com.codecool.shop.service;
 
 import com.codecool.shop.dao.*;
 import com.codecool.shop.model.Product;
+import com.codecool.shop.model.User;
 import com.google.gson.Gson;
 
 import javax.servlet.annotation.WebServlet;
