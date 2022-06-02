@@ -1,6 +1,8 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao.implementation.jdbc;
 
+import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -13,9 +15,13 @@ import java.util.List;
 public class ProductDaoJdbc implements ProductDao {
 
     private DataSource dataSource;
+    private ProductCategoryDao prodCatDaoJdbc;
+    private SupplierDao supplierDaoJdbc;
 
-    public ProductDaoJdbc(DataSource dataSource) {
+    public ProductDaoJdbc(DataSource dataSource, ProductCategoryDao prodCatDaoJdbc, SupplierDao supplierDaoJdbc) {
         this.dataSource = dataSource;
+        this.prodCatDaoJdbc = prodCatDaoJdbc;
+        this.supplierDaoJdbc = supplierDaoJdbc;
     }
 
     @Override
@@ -48,46 +54,14 @@ public class ProductDaoJdbc implements ProductDao {
             ResultSet rs = st.executeQuery();
             List <Product> products = new ArrayList<>();
             while (rs.next()) {
-                ProductCategory productCategory = getCategoryById(rs.getInt(5));
-                Supplier supplier = getSupplierById(rs.getInt(6));
+                ProductCategory productCategory = prodCatDaoJdbc.find(rs.getInt(5));
+                Supplier supplier = supplierDaoJdbc.find(rs.getInt(6));
                         Product product = new Product(rs.getString(1), rs.getBigDecimal(2), rs.getString(3), rs.getString(4), productCategory, supplier);
                         product.setId(rs.getInt(7));
                 products.add(product);
             }
             return products;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public ProductCategory getCategoryById(int id){
-        try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT name, description FROM product_categories WHERE id = (?)";
-            PreparedStatement st = conn.prepareStatement(sql);
-            st.setInt(1, id);
-            ResultSet rs = st.executeQuery();
-            ProductCategory productCategory = null;
-            if (rs.next()) {
-                productCategory = new ProductCategory(rs.getString(1), rs.getString(2));
-            }
-            return productCategory;
-        }catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public Supplier getSupplierById(int id){
-        try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT name FROM suppliers WHERE id = (?)";
-            PreparedStatement st = conn.prepareStatement(sql);
-            st.setInt(1, id);
-            ResultSet rs = st.executeQuery();
-            Supplier supplier = null;
-            if (rs.next()) {
-                supplier = new Supplier(rs.getString(1));
-            }
-            return supplier;
-        }catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
