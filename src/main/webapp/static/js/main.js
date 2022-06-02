@@ -292,10 +292,7 @@ function addToCart(shoppingCartContent) {
 
             }
         }
-        modalContent += "<div class=\"modal-header\">\n" +
-            "                <h3>Shopping Cart</h3>\n" +
-            "                <span class=\"close\">&times;</span>\n" +
-            "            </div>      " +
+        modalContent +=
             "                <div class=\"card\">\n" +
             "                        <div class=\"item\">\n" +
             "                            <div class=\"buttons\">\n" +
