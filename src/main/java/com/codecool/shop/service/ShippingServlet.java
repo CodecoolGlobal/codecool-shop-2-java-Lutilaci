@@ -19,33 +19,38 @@ import java.util.List;
 public class ShippingServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IllegalStateException, IOException {
-        String prodIds = req.getParameter("productIds");
-        System.out.println(prodIds);
-        //TODO upload ids for an order with an user!
+        DatabaseManager dbManager = new DatabaseManager();
+        try{
+            dbManager.setup();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        //PRODUCTS
+        String productIds = req.getParameter("productIds");
+        List<String> listOfProductId = List.of(productIds.split(","));
 
-        String firstName = req.getParameter("f-name");
-        String lastName = req.getParameter("l-name");
+        //USER ID FOR THE PRODUCTS THROUGH THE EMAIL PARAMETER
+        UserDao userDao = dbManager.getUserDao();
         String email = req.getParameter("email");
-        String address = req.getParameter("address");
-        String city = req.getParameter("city");
-        String zip = req.getParameter("zip");
+        int userId = userDao.findIdByEmail(email);
 
-        Address orderDetails = new Address(firstName, lastName, address, city, zip);
+        //CREATE AN ADDRESS OBJECT
+        Address address = new Address(userId,
+                req.getParameter("f-name"),
+                req.getParameter("l-name"),
+                req.getParameter("address"),
+                req.getParameter("city"),
+                req.getParameter("zip"));
 
-
-        System.out.println(orderDetails.firstName);
-        System.out.println(orderDetails.lastName);
-        System.out.println(orderDetails.street);
-        System.out.println(orderDetails.city);
-        System.out.println(orderDetails.zipCode);
+        dbManager.getAddressDao().add(address);
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("firstName", firstName);
-        context.setVariable("lastName", lastName);
-        context.setVariable("address", address);
-        context.setVariable("city", city);
-        context.setVariable("zip", zip);
+        context.setVariable("firstName", address.getFirstName());
+        context.setVariable("lastName", address.getLastName());
+        context.setVariable("address", address.getStreet());
+        context.setVariable("city", address.getCity());
+        context.setVariable("zip", address.getZipCode());
         context.setVariable("email", email);
 
         engine.process("checkout/order-summary.html", context, resp.getWriter());
