@@ -17,6 +17,10 @@ import java.util.List;
 public class ShippingServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IllegalStateException, IOException {
+        String prodIds = req.getParameter("productIds");
+        System.out.println(prodIds);
+        //TODO upload ids for an order with an user!
+
         String firstName = req.getParameter("f-name");
         String lastName = req.getParameter("l-name");
         String email = req.getParameter("email");

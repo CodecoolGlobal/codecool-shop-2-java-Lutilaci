@@ -1,6 +1,16 @@
 import {apiGet} from "./api.js";
 
 export async function sessionStorageToJson(){
+    let test = sessionStorageKeys()
+    let url = `/api/products?products=${test}`
+    let products = await apiGet(url)
+    return products;
+
+    // console.log(sessionStorage)
+    // const jsonObj = JSON.parse(Object.keys(sessionStorage))
+}
+
+export function sessionStorageKeys(){
     let keys = [];
     for(let i = 0; i < sessionStorage.length; i++){
         keys.push(sessionStorage.key(i))
@@ -12,10 +22,5 @@ export async function sessionStorageToJson(){
             test += ","
         }
     }
-    let url = `/api/products?products=${test}`
-    let products = await apiGet(url)
-    return products;
-
-    // console.log(sessionStorage)
-    // const jsonObj = JSON.parse(Object.keys(sessionStorage))
+    return test;
 }

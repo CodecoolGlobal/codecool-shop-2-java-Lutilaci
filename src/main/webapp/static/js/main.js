@@ -2,6 +2,7 @@
 import {shoppingCartCardBuilder} from "./cardFactory.js";
 import {sessionStorageToJson} from "./json.js";
 import {registrationAddEventListener} from "./registration.js";
+import {sessionStorageKeys} from "./json.js";
 let shoppingCartContent = [];
 
 function modalWindowHandler() {
@@ -70,8 +71,9 @@ function checkOutAddListener(){
     let checkOut = document.getElementById("checkOut");
     checkOut.addEventListener("click", ()=> {
         let modalBody = document.querySelector(".modal-body");
+        let productIds =  sessionStorageKeys()
         modalBody.innerHTML = `<div class="container shipping-details background">
-        <form action="/api/post/order-details" method="post">
+        <form action="/api/post/order-details?productIds=${productIds}" method="post">
             <h1>
                 Shipping Details
             </h1>
