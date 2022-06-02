@@ -1,7 +1,7 @@
-
 import {shoppingCartCardBuilder} from "./cardFactory.js";
 import {sessionStorageToJson} from "./json.js";
 import {registrationAddEventListener} from "./registration.js";
+
 let shoppingCartContent = [];
 let modal = document.getElementById("myModal");
 let btn = document.getElementById("shoppingCart");
@@ -281,11 +281,12 @@ function inCartEventListenerPlacer() {
 
 function addToCart(shoppingCartContent) {
     let setOfIds = []
-    // shoppingCartContent.forEach(sct => {
-    //     if (!setOfIds.includes(sct.id)) {
-    //         setOfIds.push(sct.id)
-    //     }
-    // })
+    shoppingCartContent.forEach(sct => {
+        if (!setOfIds.includes(sct.id)) {
+            setOfIds.push(sct.id)
+        }
+    })
+    document.querySelector(".headerText").innerHTML = "Shopping cart";
     let modalContent = "";
     shoppingCartContent.forEach(content => {
         let id = content.id
@@ -344,7 +345,7 @@ async function loadCart(){
 
 loadCart().then(r => console.log("Cart is loaded!"))
 modalWindowHandler()
-addToCartEventListener()
 registrationAddEventListener();
+addToCartEventListener()
 
 // sessionStorageHandler()
