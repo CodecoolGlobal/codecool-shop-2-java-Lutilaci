@@ -1,6 +1,8 @@
 package com.codecool.shop.service;
 
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.DatabaseManager;
+import com.codecool.shop.dao.UserDao;
 import com.codecool.shop.model.Address;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
