@@ -44,7 +44,6 @@ CREATE TABLE public.orders (
 DROP TABLE IF EXISTS public.users CASCADE;
 CREATE TABLE public.users (
                             id serial NOT NULL PRIMARY KEY ,
-                            name text NOT NULL,
                             email text NOT NULL ,
                             password text NOT NULL
 );
