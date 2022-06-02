@@ -4,9 +4,7 @@ import javax.sql.DataSource;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
-import com.codecool.shop.dao.implementation.jdbc.ProductCategoryDaoJdbc;
-import com.codecool.shop.dao.implementation.jdbc.ProductDaoJdbc;
-import com.codecool.shop.dao.implementation.jdbc.SupplierDaoJdbc;
+import com.codecool.shop.dao.implementation.jdbc.*;
 import org.postgresql.ds.PGSimpleDataSource;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,30 +12,6 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class DatabaseManager {
-
-    public ProductDao getProductDao() {
-        return productDao;
-    }
-
-    public void setProductDao(ProductDao productDao) {
-        this.productDao = productDao;
-    }
-
-    public ProductCategoryDao getProdCatDao() {
-        return prodCatDao;
-    }
-
-    public void setProdCatDao(ProductCategoryDao prodCatDao) {
-        this.prodCatDao = prodCatDao;
-    }
-
-    public SupplierDao getSupplierDao() {
-        return supplierDao;
-    }
-
-    public void setSupplierDao(SupplierDao supplierDao) {
-        this.supplierDao = supplierDao;
-    }
 
     private ProductDao productDao;
     private ProductCategoryDao prodCatDao;
@@ -50,7 +24,6 @@ public class DatabaseManager {
         productDao = new ProductDaoJdbc(dataSource, prodCatDao, supplierDao);
 
     }
-
     private DataSource connect() throws SQLException, IOException, FileNotFoundException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
 
@@ -72,5 +45,22 @@ public class DatabaseManager {
         dataSource.getConnection().close();
 
         return dataSource;
+    }
+
+    public ProductDao getProductDao() {
+        return productDao;
+    }
+    public ProductCategoryDao getProdCatDao() {
+        return prodCatDao;
+    }
+    public SupplierDao getSupplierDao() {
+        return supplierDao;
+    }
+    public UserDao getUserDao() {
+        return userDao;
+    }
+
+    public AddressDao getAddressDao() {
+        return addressDao;
     }
 }
