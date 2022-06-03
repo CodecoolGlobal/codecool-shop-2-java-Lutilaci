@@ -4,6 +4,7 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.DatabaseManager;
 import com.codecool.shop.dao.UserDao;
 import com.codecool.shop.model.Address;
+import com.codecool.shop.model.Order;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -41,8 +42,9 @@ public class ShippingServlet extends HttpServlet {
                 req.getParameter("address"),
                 req.getParameter("city"),
                 req.getParameter("zip"));
-
         dbManager.getAddressDao().add(address);
+
+        Order order = new Order(userId, address, 1500);
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());

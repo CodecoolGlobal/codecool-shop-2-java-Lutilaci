@@ -7,18 +7,18 @@ import java.util.List;
 public class Order {
 
     private int id;
-    private User user;
+    private int userId;
     private Address address;
     private double total_price;
     private Date time;
 
     private List<OrderItem> content;
 
-    public Order(User user, Address address, double total_price, Date time) {
-        this.user = user;
+    public Order(int userId, Address address, double total_price) {
+        this.userId = userId;
         this.address = address;
         this.total_price = total_price;
-        this.time = time;
+        this.time = new Date();
         content = new ArrayList<>();
     }
 
@@ -26,8 +26,8 @@ public class Order {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUser() {
+        return userId;
     }
 
     public Address getAddress() {

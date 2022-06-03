@@ -7,7 +7,7 @@ export function registrationAddEventListener() {
         document.querySelector(".headerText").innerHTML = "Registration";
 
         modal.style.display = "block";
-        modalBody.innerHTML = `<form action="/action_page.php">
+        modalBody.innerHTML = `<form action="/registration" method="post">
                                  
                                   <div class="container">
                                     <p>Please fill in this form to create an account.</p>
@@ -21,16 +21,7 @@ export function registrationAddEventListener() {
                                 
                                     <label for="psw-repeat"><b>Repeat Password</b></label><br>
                                     <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required><br>
-                                    
-                                    <h3>Address</h3>
-                                    <label for="zip-code"><b>Zip code</b></label><br>
-                                    <input type="number" placeholder="Enter Zip code" name="zip" id="zip" required><br>
-                                    
-                                    <label for="city"><b>City</b></label><br>
-                                    <input type="text" placeholder="Enter you city" name="city" id="city" required><br>
-                                    
-                                    <label for="street"><b>Street and house number</b></label><br>
-                                    <input type="text" placeholder="Enter street and house number" name="street" id="street" required><br>
+
                                     <hr>
                                     <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
                                 
